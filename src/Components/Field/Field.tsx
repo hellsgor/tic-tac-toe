@@ -1,13 +1,15 @@
 import classes from './Field.module.css';
 import { Cell } from '../Cell/Cell';
-import { FieldProps } from '../../models';
+import { useAppSelector } from '../../App/hooks';
+import { CellValue } from '../../models';
 
-export const Field = ({ cells }: FieldProps) => {
-  console.log(cells);
+export const Field = () => {
+  const cells: CellValue[] = useAppSelector((state) => state.field.value);
+
   return (
     <div className={classes.field}>
       {cells.map((cell, idx) => (
-        <Cell key={idx} value={cell} />
+        <Cell key={idx} value={cell} index={idx} />
       ))}
     </div>
   );
