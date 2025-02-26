@@ -1,6 +1,6 @@
 import classes from './Field.module.css';
 import { Cell } from '../cell/Cell';
-import { useAppSelector } from '../../../../app/hooks';
+import { useAppSelector } from '../../../../App/hooks';
 import { CellValue } from '../../../../models';
 
 export const Field = () => {

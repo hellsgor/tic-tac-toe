@@ -11,3 +11,8 @@ export interface InfoData {
   currentPlayer: CellValueSymbs;
   move: number;
 }
+
+export interface CellPayload {
+  index: number;
+  symbol: CellValueSymbs;
+}
