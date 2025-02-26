@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import fieldReducer from '../Components/Field/fieldSlice';
+import fieldReducer from '../features/field/fieldSlice';
 
 export const store = configureStore({
   reducer: {

@@ -1,7 +1,7 @@
 import classes from './Field.module.css';
-import { Cell } from '../Cell/Cell';
-import { useAppSelector } from '../../App/hooks';
-import { CellValue } from '../../models';
+import { Cell } from '../cell/Cell';
+import { useAppSelector } from '../../../../app/hooks';
+import { CellValue } from '../../../../models';
 
 export const Field = () => {
   const cells: CellValue[] = useAppSelector((state) => state.field.value);
