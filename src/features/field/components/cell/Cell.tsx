@@ -1,5 +1,5 @@
 import classes from './Cell.module.css';
-import { CellProps } from '../../models';
+import { CellProps } from '../../../../models';
 
 export const Cell = ({ value, index }: CellProps) => {
   return (
