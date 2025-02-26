@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import fieldReducer from '../features/field/fieldSlice';
+import rootReducer from './reducers';
 
 export const store = configureStore({
-  reducer: {
-    field: fieldReducer,
-  },
+  reducer: rootReducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
