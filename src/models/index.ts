@@ -3,4 +3,11 @@ export interface CellProps {
   index: number;
 }
 
-export type CellValue = 'X' | 'O' | null;
+export type CellValueSymbs = 'x' | 'o';
+
+export type CellValue = CellValueSymbs | null;
+
+export interface InfoData {
+  currentPlayer: CellValueSymbs;
+  move: number;
+}
