@@ -1,6 +1,6 @@
 import classes from './Info.module.css';
 import { InfoData } from '../../models';
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../App/hooks';
 
 const Info = () => {
   const data: InfoData = useAppSelector((state) => state.info);
