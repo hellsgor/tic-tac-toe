@@ -1,22 +1,23 @@
 import classes from './Cell.module.css';
 import { CellProps } from '../../../../models';
-import { useAppDispatch, useAppSelector } from '../../../../App/hooks';
+import { useAppDispatch } from '../../../../App/hooks';
 import { setSymbol } from '../../fieldSlice';
 import { incrementMove, setCurrentPlayer } from '../../../info';
+import { memo } from 'react';
 
-export const Cell = ({ value, index }: CellProps) => {
+const Cell = ({ value, index }: CellProps) => {
   const mod = [classes.cell, classes[`${value}`]].join(' ');
-
-  const currentPlayer = useAppSelector((state) => state.info.currentPlayer);
 
   const dispatch = useAppDispatch();
 
   const handleCellClick = () => {
     if (value) return;
 
-    dispatch(setSymbol({ index, symbol: currentPlayer }));
-    dispatch(setCurrentPlayer());
-    dispatch(incrementMove());
+    dispatch((dispatch, getState) => {
+      dispatch(setSymbol({ index, symbol: getState().info.currentPlayer }));
+      dispatch(setCurrentPlayer());
+      dispatch(incrementMove());
+    });
   };
 
   return (
@@ -27,3 +28,5 @@ export const Cell = ({ value, index }: CellProps) => {
     ></button>
   );
 };
+
+export const MemoizedCell = memo(Cell);
