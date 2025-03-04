@@ -1,6 +1,7 @@
+import { useAppSelector } from '../App/hooks';
 import { CellValue } from '../models';
 
-export const useWinChecker = (cells: CellValue[]) => {
+export const useWinChecker = () => {
   const winCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -11,6 +12,8 @@ export const useWinChecker = (cells: CellValue[]) => {
     [0, 4, 8],
     [2, 4, 6],
   ];
+
+  const cells = useAppSelector((state) => state.field.value);
 
   const win = winCombinations.filter((combination) => {
     const reference: CellValue = cells[combination[0]];
