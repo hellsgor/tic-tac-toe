@@ -15,14 +15,19 @@ export const useWinChecker = () => {
 
   const cells = useAppSelector((state) => state.field.value);
 
-  const win = winCombinations.filter((combination) => {
-    const reference: CellValue = cells[combination[0]];
-    if (!reference) return;
+  const win =
+    useAppSelector((state) => state.info.move) < 4
+      ? winCombinations.filter((combination) => {
+          const reference: CellValue = cells[combination[0]];
+          if (!reference) return;
 
-    return combination.every((combinationCell) => {
-      return !!cells[combinationCell] && cells[combinationCell] === reference;
-    });
-  });
+          return combination.every((combinationCell) => {
+            return (
+              !!cells[combinationCell] && cells[combinationCell] === reference
+            );
+          });
+        })
+      : [];
 
   console.log('win', win);
 
