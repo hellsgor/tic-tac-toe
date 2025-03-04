@@ -1,35 +1,20 @@
 import { useAppSelector } from '../App/hooks';
 import { CellValue } from '../models';
+import { WIN_COMBINATIONS } from '../constants/';
 
 export const useWinChecker = () => {
-  const winCombinations = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
   const cells = useAppSelector((state) => state.field.value);
 
-  const win =
-    useAppSelector((state) => state.info.move) < 4
-      ? winCombinations.filter((combination) => {
-          const reference: CellValue = cells[combination[0]];
-          if (!reference) return;
+  return useAppSelector((state) => state.info.move) > 4
+    ? WIN_COMBINATIONS.filter((combination) => {
+        const reference: CellValue = cells[combination[0]];
 
-          return combination.every((combinationCell) => {
-            return (
-              !!cells[combinationCell] && cells[combinationCell] === reference
-            );
-          });
-        })
-      : [];
+        if (!reference) return;
 
-  console.log('win', win);
-
-  return win;
+        return combination.every(
+          (combinationCell) =>
+            !!cells[combinationCell] && cells[combinationCell] === reference,
+        );
+      })
+    : [];
 };
