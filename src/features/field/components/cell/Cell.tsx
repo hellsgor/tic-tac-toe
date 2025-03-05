@@ -5,8 +5,10 @@ import { setSymbol } from '../../fieldSlice';
 import { incrementMove, setCurrentPlayer } from '../../../info';
 import { memo } from 'react';
 
-const Cell = ({ value, index }: CellProps) => {
-  const mod = [classes.cell, classes[`${value}`]].join(' ');
+const Cell = ({ value, index, win }: CellProps) => {
+  const mod = [classes.cell, classes[`${value}`], win ? classes.win : null]
+    .join(' ')
+    .trim();
 
   const dispatch = useAppDispatch();
 
