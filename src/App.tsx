@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <h1>Tic Tac Toe</h1>
-      <Info />
+      <Info draw={move > 9 && !win.length} win={!!win.length} />
       <Field winCombination={win.length ? win[0] : []} />
     </>
   );

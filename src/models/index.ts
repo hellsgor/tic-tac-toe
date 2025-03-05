@@ -18,6 +18,11 @@ export interface CellPayload {
   symbol: CellValueSymbs;
 }
 
+export interface InfoProps {
+  win: boolean;
+  draw: boolean;
+}
+
 export interface FieldProps {
   winCombination: number[];
 }

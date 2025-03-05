@@ -1,19 +1,32 @@
 import classes from './Info.module.css';
-import { InfoData } from '../../models';
+import { InfoData, InfoProps } from '../../models';
 import { useAppSelector } from '../../App/hooks';
 
-const Info = () => {
+const Info = ({ win, draw }: InfoProps) => {
   const data: InfoData = useAppSelector((state) => state.info);
+
+  const getPlayerIconClasses = [
+    `${classes.player}`,
+    classes[
+      `${win ? (data.currentPlayer === 'o' ? 'x' : 'o') : data.currentPlayer}`
+    ],
+  ]
+    .join(' ')
+    .trim();
 
   return (
     <div className={classes.info}>
-      <span>Player</span>
-      <span
-        className={`${classes.player} ${
-          data.currentPlayer === 'o' ? classes.o : classes.x
-        }`}
-      ></span>
-      <span>move #{data.move}</span>
+      {draw ? (
+        <>
+          <span>The game ended with a draw</span>
+        </>
+      ) : (
+        <>
+          <span>Player</span>
+          <span className={getPlayerIconClasses}></span>
+          <span>{win ? 'won!' : `move #${data.move}`}</span>
+        </>
+      )}
     </div>
   );
 };
