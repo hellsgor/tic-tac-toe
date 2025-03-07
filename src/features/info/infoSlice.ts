@@ -13,11 +13,17 @@ const infoSlice = createSlice({
     setCurrentPlayer: (state) => {
       state.currentPlayer = state.currentPlayer === 'o' ? 'x' : 'o';
     },
+
     incrementMove: (state) => {
       state.move += 1;
+    },
+
+    resetInfo: (state) => {
+      state.move = initialState.move;
+      state.currentPlayer = state.currentPlayer === 'o' ? 'x' : 'o';
     },
   },
 });
 
-export const { setCurrentPlayer, incrementMove } = infoSlice.actions;
+export const { setCurrentPlayer, incrementMove, resetInfo } = infoSlice.actions;
 export default infoSlice.reducer;

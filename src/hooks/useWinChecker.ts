@@ -3,7 +3,7 @@ import { CellValue } from '../models';
 import { WIN_COMBINATIONS } from '../constants/';
 
 export const useWinChecker = () => {
-  const cells = useAppSelector((state) => state.field.value);
+  const cells = useAppSelector((state) => state.field.cells);
 
   return useAppSelector((state) => state.info.move) > 4
     ? WIN_COMBINATIONS.filter((combination) => {

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CellPayload, CellValue } from '../../models';
 
-const initialState: { value: CellValue[] } = {
-  value: Array(9).fill(null),
+const initialState: { cells: CellValue[] } = {
+  cells: Array(9).fill(null),
 };
 
 export const fieldSlice = createSlice({
@@ -10,10 +10,14 @@ export const fieldSlice = createSlice({
   initialState,
   reducers: {
     setSymbol: (state, action: PayloadAction<CellPayload>) => {
-      state.value[action.payload.index] = action.payload.symbol;
+      state.cells[action.payload.index] = action.payload.symbol;
+    },
+
+    resetField: (state) => {
+      state.cells = initialState.cells;
     },
   },
 });
 
-export const { setSymbol } = fieldSlice.actions;
+export const { setSymbol, resetField } = fieldSlice.actions;
 export default fieldSlice.reducer;
