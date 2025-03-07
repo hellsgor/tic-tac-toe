@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../../App/hooks';
 import { FieldProps } from '../../../../models';
 
 export const Field = ({ winCombination }: FieldProps) => {
-  const cells = useAppSelector((state) => state.field.value);
+  const cells = useAppSelector((state) => state.field.cells);
 
   return (
     <div
