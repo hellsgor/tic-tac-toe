@@ -3,10 +3,11 @@ import { useAppSelector } from './App/hooks';
 import { Field } from './features/field';
 import { Info } from './features/info';
 import { useWinChecker } from './hooks/useWinChecker';
-import { Button } from './UI/button/button';
+import { Button } from './components/UI/button/button';
 
 function App() {
   const win = useWinChecker();
+
   const move = useAppSelector((state) => state.info.move);
 
   return (
