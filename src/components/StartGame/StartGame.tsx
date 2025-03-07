@@ -12,7 +12,14 @@ const StartGame = () => {
     dispatch(resetInfo());
   }, [dispatch]);
 
-  return <Button onClick={handleButtonClick}>Start new game</Button>;
+  return (
+    <div
+      className="start-game"
+      style={{ display: 'flex', justifyContent: 'center' }}
+    >
+      <Button onClick={handleButtonClick}>Start new game</Button>
+    </div>
+  );
 };
 
 export const StartGameMemoized = memo(StartGame);
