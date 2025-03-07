@@ -3,6 +3,7 @@ import { useAppSelector } from './App/hooks';
 import { Field } from './features/field';
 import { Info } from './features/info';
 import { useWinChecker } from './hooks/useWinChecker';
+import { Button } from './UI/button/button';
 
 function App() {
   const win = useWinChecker();
@@ -13,6 +14,7 @@ function App() {
       <h1>Tic Tac Toe</h1>
       <Info draw={move > 9 && !win.length} win={!!win.length} />
       <Field winCombination={win.length ? win[0] : []} />
+      <Button>Start new game</Button>
     </>
   );
 }
