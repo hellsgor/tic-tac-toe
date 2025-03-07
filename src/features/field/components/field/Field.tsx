@@ -1,15 +1,23 @@
 import classes from './Field.module.css';
-import { Cell } from '../cell/Cell';
+import { MemoizedCell } from '../cell/Cell';
 import { useAppSelector } from '../../../../App/hooks';
-import { CellValue } from '../../../../models';
+import { FieldProps } from '../../../../models';
 
-export const Field = () => {
-  const cells: CellValue[] = useAppSelector((state) => state.field.value);
+export const Field = ({ winCombination }: FieldProps) => {
+  const cells = useAppSelector((state) => state.field.value);
 
   return (
-    <div className={classes.field}>
+    <div
+      className={classes.field}
+      style={winCombination.length ? { pointerEvents: 'none' } : {}}
+    >
       {cells.map((cell, idx) => (
-        <Cell key={idx} value={cell} index={idx} />
+        <MemoizedCell
+          key={idx}
+          value={cell}
+          index={idx}
+          win={!!winCombination.length && winCombination.includes(idx)}
+        />
       ))}
     </div>
   );

@@ -1,6 +1,7 @@
 export interface CellProps {
   value: CellValue;
   index: number;
+  win: boolean;
 }
 
 export type CellValueSymbs = 'x' | 'o';
@@ -15,4 +16,13 @@ export interface InfoData {
 export interface CellPayload {
   index: number;
   symbol: CellValueSymbs;
+}
+
+export interface InfoProps {
+  win: boolean;
+  draw: boolean;
+}
+
+export interface FieldProps {
+  winCombination: number[];
 }

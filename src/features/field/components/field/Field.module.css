@@ -8,24 +8,3 @@
   flex-wrap: wrap;
   background-color: #434343;
 }
-
-/* .field > * {
-  height: calc(100% / 3);
-  flex: 1 1 calc(100% / 3);
-  border-style: solid;
-  border-color: transparent;
-  border-width: 1px;
-} */
-
-/* .field > *:nth-child(1),
-.field > *:nth-child(3n + 1),
-.field > *:nth-child(3n - 1) {
-  border-right-color: #434343;
-}
-
-.field > *:nth-child(4),
-.field > *:nth-child(5),
-.field > *:nth-child(6) {
-  border-top-color: #434343;
-  border-bottom-color: #434343;
-} */
