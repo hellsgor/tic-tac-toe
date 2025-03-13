@@ -1,74 +1,36 @@
-# Tic Tac Toe / Крестики-Нолики
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-[![React](https://img.shields.io/badge/React-19.0.0-blue)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.2.0-yellowgreen)](https://vitejs.dev/)
+## Getting Started
 
-<div align="center">
-  <img src="public/screenshot.png" width="400" alt="Game screenshot">
-</div>
+First, run the development server:
 
-## In English
-
-### 🎯 Learning Project
-**Goals**: Explore React 19 and ecosystem features:
-- Functional components practice
-- State management with Redux Toolkit
-- Render optimization (useCallback, memo)
-- TypeScript integration
-- Vite build setup
-
-### 🎮 Implementation Highlights
-- Win detection with line highlighting
-- Move counter with auto-reset
-- Localized UI (Russian/English)
-- Mobile-friendly responsive design
-- Custom UI components (buttons, cells)
-
-### 🛠 Tech Stack
-- React 19 (hooks, functional components)
-- TypeScript (type-safe store and components)
-- Redux Toolkit (global game state)
-- Vite (fast build and dev server)
-- SCSS Modules (component styling)
-
-## In Russian
-
-### 🎯 Учебный проект
-**Цель**: Изучение возможностей React 19 и экосистемы:
-- Работа с функциональными компонентами
-- Управление состоянием через Redux Toolkit
-- Оптимизация рендеров (useCallback, memo)
-- Типизация приложения с TypeScript
-- Сборка проекта на Vite
-
-### 🎮 Особенности реализации
-- Определение победителя с подсветкой линии
-- Счётчик ходов с автоматическим сбросом
-- Локализованный интерфейс (русский/английский)
-- Адаптивная вёрстка для мобильных устройств
-- Кастомные UI-компоненты (кнопки, ячейки)
-
-### 🛠 Стек технологий
-- **React 19** (хуки, функциональные компоненты)
-- **TypeScript** (типизация хранилища и компонентов)
-- **Redux Toolkit** (глобальное состояние игры)
-- **Vite** (быстрая сборка и dev-сервер)
-- **SCSS Modules** (стилизация компонентов)
-
-## ⚙️ Getting Started / Запуск проекта
-
-1. Clone repository / Клонировать репозиторий:
-```bash
-git clone git@github.com:hellsgor/tic-tac-toe.git
-```
-
-2. Install dependencies / Установить зависимости:
-```bash
-npm install
-```
-
-3. Run dev server / Запустить в режиме разработки:
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
