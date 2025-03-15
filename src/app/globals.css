@@ -4,6 +4,8 @@
   --color-asphalt: #242424;
   --color-button-bg: #1a1a1a;
   --color-hover: #646cff;
+  --color-x: #9400d3;
+  --color-o: #9acd32;
   --default-transition-timing-function: ease-in-out;
   --default-transition-duration: 0.2s;
 }
