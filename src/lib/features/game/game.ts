@@ -1,4 +1,4 @@
-import { CellPayload, CellValue, InfoData } from "@/models";
+import { CellPayload, CellValue, InfoData, Win } from "@/models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface GameState extends InfoData {
@@ -10,7 +10,7 @@ const initialState: GameState = {
   currentPlayer: "x",
   move: 1,
   draw: false,
-  win: false,
+  win: [],
 };
 
 export const gameSlice = createSlice({
@@ -25,8 +25,8 @@ export const gameSlice = createSlice({
       state.currentPlayer = state.currentPlayer === "o" ? "x" : "o";
     },
 
-    setWin: (state) => {
-      state.win = true;
+    setWin: (state, action: PayloadAction<Win>) => {
+      state.win = action.payload;
     },
 
     setDraw: (state) => {
