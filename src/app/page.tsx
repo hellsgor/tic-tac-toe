@@ -1,5 +1,5 @@
 import StoreProvider from "./StoreProvider";
-import { Field } from "@/components/Field/Field";
+import { Field } from "@/lib/features/game/components/Field/Field";
 
 export default function Home() {
   return (
