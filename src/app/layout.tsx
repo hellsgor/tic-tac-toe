@@ -33,7 +33,7 @@ export default function RootLayout({
       <body
         className={`antialiased ${chivoMono.variable} bg-asphalt h-dvh font-mono text-base text-white`}
       >
-        <main className="flex h-full flex-col items-center justify-center gap-6">
+        <main className="flex h-full flex-col items-center justify-center gap-10">
           {children}
         </main>
       </body>
