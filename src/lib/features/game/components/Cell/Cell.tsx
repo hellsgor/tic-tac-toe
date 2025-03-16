@@ -1,7 +1,9 @@
+import { useAppDispatch } from "@/lib/hooks";
 import { CellProps, CellValue } from "@/models";
 import { memo } from "react";
+import { incrementMove, setCurrentPlayer, setSymbol } from "../../game";
 
-const Cell = ({ value }: CellProps) => {
+const Cell = ({ value, index }: CellProps) => {
   const getClasses = (value: CellValue) =>
     ["border-none", "bg-[#242424]"]
       .concat(
@@ -16,23 +18,23 @@ const Cell = ({ value }: CellProps) => {
       )
       .join(" ");
 
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  // const handleCellClick = () => {
-  //   if (value) return;
+  const handleCellClick = () => {
+    if (value) return;
 
-  //   dispatch((dispatch, getState) => {
-  //     dispatch(setSymbol({ index, symbol: getState().info.currentPlayer }));
-  //     dispatch(setCurrentPlayer());
-  //     dispatch(incrementMove());
-  //   });
-  // };
+    dispatch((dispatch, getState) => {
+      dispatch(setSymbol({ index, symbol: getState().game.currentPlayer }));
+      dispatch(setCurrentPlayer());
+      dispatch(incrementMove());
+    });
+  };
 
   return (
     <button
       className={getClasses(value)}
-      // onClick={handleCellClick}
-      // disabled={!!value}
+      onClick={handleCellClick}
+      disabled={!!value}
     ></button>
   );
 };
