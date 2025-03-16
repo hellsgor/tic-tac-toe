@@ -2,17 +2,19 @@ import { CellProps, CellValue } from "@/models";
 import { memo } from "react";
 
 const Cell = ({ value }: CellProps) => {
-  const getMod = (value: CellValue) =>
-    value
-      ? ` ${[
-          `${value ? (value === "o" ? "bg-[url(/icons/o.svg)]" : "bg-[url(/icons/x.svg)]") : ""}`,
-          "bg-[auto_70%]",
-          "bg-center",
-          "bg-no-repeat",
-        ]
-          .join(" ")
-          .trim()}`
-      : "";
+  const getClasses = (value: CellValue) =>
+    ["border-none", "bg-[#242424]"]
+      .concat(
+        value
+          ? [
+              `${value ? (value === "o" ? "bg-[url(/icons/o.svg)]" : "bg-[url(/icons/x.svg)]") : ""}`,
+              "bg-[auto_70%]",
+              "bg-center",
+              "bg-no-repeat",
+            ]
+          : [],
+      )
+      .join(" ");
 
   // const dispatch = useAppDispatch();
 
@@ -28,7 +30,7 @@ const Cell = ({ value }: CellProps) => {
 
   return (
     <button
-      className={`border-none bg-[#242424]${getMod(value)}`}
+      className={getClasses(value)}
       // onClick={handleCellClick}
       // disabled={!!value}
     ></button>
