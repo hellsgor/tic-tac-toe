@@ -29,6 +29,10 @@ export const gameSlice = createSlice({
 
     reset: (state) => {
       state.cells = initialState.cells;
+      state.currentPlayer = initialState.currentPlayer;
+      state.move = initialState.move;
+      state.draw = initialState.draw;
+      state.win = initialState.win;
     },
   },
 });
