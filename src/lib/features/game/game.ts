@@ -33,5 +33,6 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setSymbol, reset } = gameSlice.actions;
+export const { setSymbol, setCurrentPlayer, incrementMove, reset } =
+  gameSlice.actions;
 export default gameSlice.reducer;
