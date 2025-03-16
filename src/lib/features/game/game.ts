@@ -9,6 +9,8 @@ const initialState: GameState = {
   cells: Array(9).fill(null),
   currentPlayer: "x",
   move: 1,
+  draw: false,
+  win: false,
 };
 
 export const gameSlice = createSlice({
@@ -21,6 +23,14 @@ export const gameSlice = createSlice({
 
     setCurrentPlayer: (state) => {
       state.currentPlayer = state.currentPlayer === "o" ? "x" : "o";
+    },
+
+    setWin: (state) => {
+      state.win = true;
+    },
+
+    setDraw: (state) => {
+      state.draw = true;
     },
 
     incrementMove: (state) => {
@@ -37,6 +47,12 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setSymbol, setCurrentPlayer, incrementMove, reset } =
-  gameSlice.actions;
+export const {
+  setSymbol,
+  setCurrentPlayer,
+  setWin,
+  setDraw,
+  incrementMove,
+  reset,
+} = gameSlice.actions;
 export default gameSlice.reducer;
