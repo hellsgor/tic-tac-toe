@@ -1,7 +1,7 @@
 export interface CellProps {
   value: CellValue;
   index: number;
-  // win: boolean;
+  win: boolean;
 }
 
 export type CellValueSymbols = "x" | "o";
