@@ -1,11 +1,13 @@
 import { CellValueSymbols } from "./cell";
+import { Win } from "./game";
 
 export interface InfoProps {
-  win: boolean;
-  draw: boolean;
+  classes?: string;
 }
 
 export interface InfoData {
   currentPlayer: CellValueSymbols;
   move: number;
+  win: Win;
+  draw: boolean;
 }
