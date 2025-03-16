@@ -1,20 +1,14 @@
 import { useAppSelector } from "@/lib/hooks";
-import { InfoData, InfoProps } from "@/models";
+import { InfoProps } from "@/models";
 import { getString } from "@/helpers/getString";
 
 const Info = ({ classes }: InfoProps) => {
   const rowClasses = "flex items-center gap-x-1 text-base";
 
-  const { currentPlayer, move, win, draw }: InfoData = useAppSelector(
-    (state) => {
-      return {
-        currentPlayer: state.game.currentPlayer,
-        move: state.game.move,
-        win: state.game.win,
-        draw: state.game.draw,
-      };
-    },
-  );
+  const draw = useAppSelector((state) => state.game.draw);
+  const win = useAppSelector((state) => state.game.win);
+  const move = useAppSelector((state) => state.game.move);
+  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
   const getGameStatus = () =>
     draw ? (
