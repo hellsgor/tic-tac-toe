@@ -1,5 +1,5 @@
+import { Game } from "@/lib/features/game";
 import StoreProvider from "./StoreProvider";
-import { Game } from "@/lib/features/game/components/Game/Game";
 
 export default function Home() {
   return (

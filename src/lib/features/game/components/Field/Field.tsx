@@ -3,7 +3,7 @@ import { CellValue } from "@/models";
 import { MemoizedCell } from "../Cell/Cell";
 import { useAppSelector } from "@/lib/hooks";
 // { winCombination }: FieldProps
-export const Field = () => {
+export default function Field() {
   const cells: CellValue[] = useAppSelector((state) => state.game.cells);
 
   return (
@@ -21,4 +21,4 @@ export const Field = () => {
       ))}
     </div>
   );
-};
+}
