@@ -1,19 +1,10 @@
 // import { FieldProps } from "@/models";
 import { CellValue } from "@/models";
 import { MemoizedCell } from "../Cell/Cell";
+import { useAppSelector } from "@/lib/hooks";
 // { winCombination }: FieldProps
 export const Field = () => {
-  const cells: CellValue[] = [
-    null,
-    "x",
-    null,
-    null,
-    "o",
-    null,
-    null,
-    null,
-    null,
-  ];
+  const cells: CellValue[] = useAppSelector((state) => state.game.cells);
 
   return (
     <div
