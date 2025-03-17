@@ -2,11 +2,11 @@ import { useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { getString } from "@/helpers/getString";
 
-const Info = ({ classes }: InfoProps) => {
+const Info = ({ classes, gameCheck }: InfoProps) => {
   const rowClasses = "flex items-center gap-x-1 text-base";
 
-  const draw = useAppSelector((state) => state.game.draw);
-  const win = useAppSelector((state) => state.game.win);
+  const { win, draw } = gameCheck;
+
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
@@ -21,10 +21,10 @@ const Info = ({ classes }: InfoProps) => {
         <span
           className={`inline-block size-6 bg-[url(/icons/${win ? (currentPlayer === "x" ? "o" : "x") : currentPlayer}.svg)] bg-contain bg-center bg-no-repeat`}
         ></span>
-        <span>{win ? " won!" : " move"}</span>
+        <span>{win.length ? " won!" : " move"}</span>
       </>
     );
-
+  console.log("Info");
   return (
     <div className={getString(classes)}>
       <div className="bg-dark-bg flex h-full min-w-xs flex-col gap-y-2 rounded-lg p-4">
