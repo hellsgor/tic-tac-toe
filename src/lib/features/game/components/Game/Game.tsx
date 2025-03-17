@@ -12,7 +12,7 @@ export function Game() {
       <Field win={gameCheck.win} />
       <Info
         gameCheck={gameCheck}
-        classes="absolute top-0 left-full pl-10 h-full"
+        classes="absolute top-0 left-full pl-10 h-full flex flex-col justify-between gap-y-5"
       />
     </div>
   );
