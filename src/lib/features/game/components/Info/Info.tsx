@@ -32,8 +32,7 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
   const handleResetBtnClick = () => {
     dispatch(reset());
   };
-  console.log(currentPlayer);
-  console.log(win);
+
   return (
     <div className={getString(classes)}>
       <div className="bg-dark-bg flex min-w-xs flex-auto flex-col gap-y-1 rounded-lg p-4">
