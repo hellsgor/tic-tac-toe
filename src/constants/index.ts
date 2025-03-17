@@ -1,1 +1,1 @@
-export * from './winCombinations';
+export * from "./winCombinations";
