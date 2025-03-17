@@ -1,10 +1,11 @@
-import { Field } from "@/components/Field/Field";
+import { Game } from "@/lib/features/game";
+import StoreProvider from "./StoreProvider";
 
 export default function Home() {
   return (
-    <>
+    <StoreProvider>
       <h1 className="text-6xl font-bold">Tic Tac Toe</h1>
-      <Field />
-    </>
+      <Game />
+    </StoreProvider>
   );
 }

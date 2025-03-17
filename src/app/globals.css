@@ -2,7 +2,9 @@
 
 @theme {
   --color-asphalt: #242424;
-  --color-button-bg: #1a1a1a;
+  --color-dark-bg: #1a1a1a;
+  --color-x-win-bg: rgba(148, 0, 211, 0.1);
+  --color-o-win-bg: rgba(153, 205, 50, 0.1);
   --color-hover: #646cff;
   --color-x: #9400d3;
   --color-o: #9acd32;

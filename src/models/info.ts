@@ -1,8 +1,9 @@
 import { CellValueSymbols } from "./cell";
+import { GameCheck } from "./game";
 
 export interface InfoProps {
-  win: boolean;
-  draw: boolean;
+  classes?: string;
+  gameCheck: GameCheck;
 }
 
 export interface InfoData {
