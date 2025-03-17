@@ -1,3 +1,5 @@
+import { Win } from "./game";
+
 export interface FieldProps {
-  winCombination: number[];
+  win: Win;
 }

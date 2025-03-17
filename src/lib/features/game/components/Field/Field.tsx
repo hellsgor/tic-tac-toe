@@ -1,11 +1,11 @@
 import { getString } from "@/helpers/getString";
 import { MemoizedCell } from "../Cell/Cell";
 import { useAppSelector } from "@/lib/hooks";
+import { FieldProps } from "@/models";
 
-export default function Field() {
+export default function Field({ win }: FieldProps) {
   const cells = useAppSelector((state) => state.game.cells);
-  const win = useAppSelector((state) => state.game.win);
-
+  console.log("Field");
   return (
     <div
       className={getString(
