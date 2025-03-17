@@ -5,7 +5,7 @@ import { FieldProps } from "@/models";
 
 export default function Field({ win }: FieldProps) {
   const cells = useAppSelector((state) => state.game.cells);
-  console.log("Field");
+
   return (
     <div
       className={getString(

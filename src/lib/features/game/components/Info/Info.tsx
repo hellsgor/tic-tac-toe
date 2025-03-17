@@ -1,6 +1,8 @@
-import { useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { getString } from "@/helpers/getString";
+import { Button } from "@/UI/Button/Button";
+import { reset } from "../../game";
 
 const Info = ({ classes, gameCheck }: InfoProps) => {
   const rowClasses = "flex items-center gap-x-1 text-base";
@@ -9,6 +11,8 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
 
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
+
+  const dispatch = useAppDispatch();
 
   const getGameStatus = () =>
     draw ? (
@@ -19,16 +23,21 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
       <>
         <span>Player</span>
         <span
-          className={`inline-block size-6 bg-[url(/icons/${win ? (currentPlayer === "x" ? "o" : "x") : currentPlayer}.svg)] bg-contain bg-center bg-no-repeat`}
+          className={`inline-block size-6 bg-[url(/icons/${win.length ? (currentPlayer === "x" ? "o" : "x") : currentPlayer}.svg)] bg-contain bg-center bg-no-repeat`}
         ></span>
         <span>{win.length ? " won!" : " move"}</span>
       </>
     );
-  console.log("Info");
+
+  const handleResetBtnClick = () => {
+    dispatch(reset());
+  };
+  console.log(currentPlayer);
+  console.log(win);
   return (
     <div className={getString(classes)}>
-      <div className="bg-dark-bg flex h-full min-w-xs flex-col gap-y-2 rounded-lg p-4">
-        <h4 className="text-xl font-bold">Info: </h4>
+      <div className="bg-dark-bg flex min-w-xs flex-auto flex-col gap-y-1 rounded-lg p-4">
+        <h4 className="mb-4 text-xl font-bold">Info: </h4>
         <p className={rowClasses}>
           <span>Move #{win || draw ? move - 1 : move}</span>
         </p>
@@ -37,6 +46,8 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
           <span>Next move in:</span>
         </p> */}
       </div>
+
+      <Button onClick={handleResetBtnClick}>Start new game</Button>
     </div>
   );
 };
