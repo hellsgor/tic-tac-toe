@@ -14,6 +14,7 @@ const Cell = ({ value, index, win }: CellProps) => {
   const getClasses = (value: CellValue) =>
     getString(
       "border-none",
+      !value ? "cursor-pointer" : "cursor-default",
       bgColorClass,
       value
         ? [
