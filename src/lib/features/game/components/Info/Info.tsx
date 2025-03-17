@@ -24,7 +24,7 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
         <span>{win.length ? " won!" : " move"}</span>
       </>
     );
-  console.log("Info");
+
   return (
     <div className={getString(classes)}>
       <div className="bg-dark-bg flex h-full min-w-xs flex-col gap-y-2 rounded-lg p-4">
