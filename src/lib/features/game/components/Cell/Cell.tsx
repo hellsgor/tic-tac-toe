@@ -5,12 +5,16 @@ import { incrementMove, setCurrentPlayer, setSymbol } from "../../game";
 import { getString } from "@/helpers/getString";
 
 const Cell = ({ value, index, win }: CellProps) => {
+  const bgColorClass = win
+    ? value === "x"
+      ? "bg-(--color-x-win-bg)"
+      : "bg-(--color-o-win-bg)"
+    : "bg-[#242424]";
+
   const getClasses = (value: CellValue) =>
     getString(
-      [
-        "border-none",
-        `${win ? (value === "x" ? "bg-(--color-o-win-bg)" : "bg-(--color-x-win-bg)") : "bg-[#242424]"}`,
-      ],
+      "border-none",
+      bgColorClass,
       value
         ? [
             `${value ? (value === "o" ? "bg-[url(/icons/o.svg)]" : "bg-[url(/icons/x.svg)]") : ""}`,
