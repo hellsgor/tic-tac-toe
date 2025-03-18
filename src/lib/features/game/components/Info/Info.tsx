@@ -16,9 +16,7 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
 
   const getGameStatus = () =>
     draw ? (
-      <>
-        <span>The game ended with a draw</span>
-      </>
+      <span>The game ended with a draw</span>
     ) : (
       <>
         <span>Player</span>
