@@ -4,10 +4,8 @@ import { getString } from "@/helpers/getString";
 import { Button } from "@/UI/Button/Button";
 import { reset } from "../../game";
 
-const Info = ({ classes, gameCheck }: InfoProps) => {
+const Info = ({ classes, win, draw }: InfoProps) => {
   const rowClasses = "flex items-center gap-x-1 text-base";
-
-  const { win, draw } = gameCheck;
 
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
