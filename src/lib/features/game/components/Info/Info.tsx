@@ -2,7 +2,8 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { getString } from "@/helpers/getString";
 import { Button } from "@/UI/Button/Button";
-import { GameState, reset } from "../../game";
+import { reset } from "../../game";
+import { getStatus } from "./getStatus";
 
 export default function Info({ classes, win, draw }: InfoProps) {
   const rowClasses = "flex items-center gap-x-1 text-base";
@@ -33,19 +34,3 @@ export default function Info({ classes, win, draw }: InfoProps) {
     </div>
   );
 }
-
-type GetStatusProps = Omit<InfoProps, "classes"> &
-  Pick<GameState, "currentPlayer">;
-
-const getStatus = ({ win, draw, currentPlayer }: GetStatusProps) =>
-  draw ? (
-    <span>The game ended with a draw</span>
-  ) : (
-    <>
-      <span>Player</span>
-      <span
-        className={`inline-block size-6 bg-[url(/icons/${win.length ? (currentPlayer === "x" ? "o" : "x") : currentPlayer}.svg)] bg-contain bg-center bg-no-repeat`}
-      ></span>
-      <span>{win.length ? " won!" : " move"}</span>
-    </>
-  );
