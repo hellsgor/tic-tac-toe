@@ -14,7 +14,7 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
 
   const dispatch = useAppDispatch();
 
-  const getGameStatus = () =>
+  const getStatus = () =>
     draw ? (
       <span>The game ended with a draw</span>
     ) : (
@@ -38,7 +38,7 @@ const Info = ({ classes, gameCheck }: InfoProps) => {
         <p className={rowClasses}>
           <span>Move #{win || draw ? move - 1 : move}</span>
         </p>
-        <p className={rowClasses}>{getGameStatus()}</p>
+        <p className={rowClasses}>{getStatus()}</p>
         {/* <p className={rowClasses}>
           <span>Next move in:</span>
         </p> */}
