@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { getString } from "@/helpers/getString";
-import { Button } from "@/UI/Button/Button";
+import { MemoizedButton } from "@/UI/Button/Button";
 import { reset } from "../../game";
 import { getStatus } from "./getStatus";
 import InfoRow from "./Row";
@@ -26,7 +26,9 @@ export default function Info({ classes, win, draw }: InfoProps) {
         <InfoRow>{getStatus({ win, draw, currentPlayer })}</InfoRow>
       </div>
 
-      <Button onClick={handleResetBtnClick}>Start new game</Button>
+      <MemoizedButton onClick={handleResetBtnClick}>
+        Start new game
+      </MemoizedButton>
     </div>
   );
 }
