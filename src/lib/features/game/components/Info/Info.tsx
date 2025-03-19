@@ -5,6 +5,7 @@ import { MemoizedButton } from "@/UI/Button/Button";
 import { reset } from "../../game";
 import { getStatus } from "./getStatus";
 import InfoRow from "./Row";
+import { useCallback } from "react";
 
 export default function Info({ classes, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
@@ -12,9 +13,9 @@ export default function Info({ classes, win, draw }: InfoProps) {
 
   const dispatch = useAppDispatch();
 
-  const handleResetBtnClick = () => {
+  const handleResetBtnClick = useCallback(() => {
     dispatch(reset());
-  };
+  }, [dispatch]);
 
   return (
     <div className={getString(classes)}>
