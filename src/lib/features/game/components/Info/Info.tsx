@@ -4,7 +4,7 @@ import { getString } from "@/helpers/getString";
 import { MemoizedButton } from "@/UI/Button/Button";
 import { reset } from "../../game";
 import { getStatus } from "./getStatus";
-import InfoRow from "./Row";
+import InfoRow from "./InfoRow";
 import { useCallback } from "react";
 
 export default function Info({ classes, win, draw }: InfoProps) {
