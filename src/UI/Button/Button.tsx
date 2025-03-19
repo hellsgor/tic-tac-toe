@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes, memo, ReactNode } from "react";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   classes?: string;
@@ -15,3 +15,5 @@ export const Button = ({ children, classes, ...props }: ButtonProps) => {
     </button>
   );
 };
+
+export const MemoizedButton = memo(Button);
