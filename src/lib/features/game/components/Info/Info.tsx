@@ -22,7 +22,7 @@ export default function Info({ classes, win, draw }: InfoProps) {
       <div className="bg-dark-bg flex min-w-xs flex-auto flex-col gap-y-1 rounded-lg p-4">
         <h4 className="mb-4 text-xl font-bold">Info: </h4>
         <InfoRow>
-          <span>Move #{win || draw ? move - 1 : move}</span>
+          <span>Move #{win.length || draw ? move - 1 : move}</span>
         </InfoRow>
         <InfoRow>{getStatus({ win, draw, currentPlayer })}</InfoRow>
       </div>
