@@ -2,7 +2,7 @@ module.exports = {
   theme: {
     extends: {
       fontFamily: {
-        mono: ['var(--font-chivo-mono)'],
+        mono: ["var(--font-chivo-mono)"],
       },
     },
   },
