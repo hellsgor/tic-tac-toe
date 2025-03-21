@@ -1,5 +1,5 @@
-import { Container } from "../Container";
-import { Logo } from "../Logo";
+import { Container } from "../../UI/Container";
+import { Logo } from "../../UI/Logo";
 import { MemoizedPlayer } from "../Player/";
 
 export function Header() {
