@@ -1,6 +1,6 @@
 export function PlayerIcon() {
   return (
-    <div className="relative aspect-square w-8 overflow-hidden rounded-full border-1 bg-transparent text-white">
+    <div className="relative aspect-square rounded-full border-1">
       <svg
         className="absolute top-1.5 left-[50%] translate-x-[-50%]"
         xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
 import { Container } from "../Container";
 import { Logo } from "../Logo";
-import { Player } from "../Player";
+import { MemoizedPlayer } from "../Player/";
 
 export function Header() {
   return (
@@ -8,7 +8,11 @@ export function Header() {
       <Container>
         <div className="flex items-center justify-between">
           <Logo />
-          <Player />
+          <MemoizedPlayer
+            imgSrc={"/images/user.webp"}
+            userName={"Username"}
+            rate={1234}
+          />
         </div>
       </Container>
     </header>

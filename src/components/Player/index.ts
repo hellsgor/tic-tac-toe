@@ -1,1 +1,1 @@
-export { Player } from "./Player";
+export { MemoizedPlayer } from "./Player";
