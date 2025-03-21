@@ -1,10 +1,10 @@
 "use client";
 
-import { useGameChecker } from "../../hooks/useGameChecker";
-import Field from "../Field/Field";
-import Info from "../Info/Info";
+import { useGameChecker } from "../../lib/features/game/hooks/useGameChecker";
+import Field from "../../lib/features/game/components/Field/Field";
+import Info from "../../lib/features/game/components/Info/Info";
 
-export function Game() {
+export default function Game() {
   const { win, draw } = useGameChecker();
 
   return (

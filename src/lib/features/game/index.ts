@@ -1,2 +1,2 @@
 export * from "./game";
-export * from "./components/Game/Game";
+export * from "../../../app/game/page";
