@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../../UI/Avatar";
 import Image from "next/image";
 import { ChevronDownIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 
