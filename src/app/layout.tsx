@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import StoreProvider from "./StoreProvider";
 
 const chivoMono = localFont({
   src: [
@@ -34,10 +35,12 @@ export default function RootLayout({
       <body
         className={`antialiased ${chivoMono.variable} bg-asphalt h-dvh font-mono text-base text-white`}
       >
-        <Header />
-        <main className="flex h-full flex-col items-center justify-center gap-10">
-          {children}
-        </main>
+        <StoreProvider>
+          <Header />
+          <main className="flex h-full flex-col items-center justify-center gap-10">
+            {children}
+          </main>
+        </StoreProvider>
       </body>
     </html>
   );
