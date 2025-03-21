@@ -11,7 +11,7 @@ interface PlayerProps {
 
 export function Player({ imgSrc, userName, rate }: PlayerProps) {
   return (
-    <button className="flex cursor-pointer items-center gap-x-2 text-left transition-colors hover:text-(--color-hover)">
+    <button className="flex cursor-pointer items-center gap-x-3 text-left transition-colors hover:text-(--color-hover)">
       <Avatar>
         {imgSrc ? (
           <Image src={imgSrc} alt="user image" width={32} height={32} />
