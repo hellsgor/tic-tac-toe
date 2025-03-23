@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <StoreProvider>
           <Header />
-          <main className="flex h-full flex-col items-center justify-center gap-10">
+          <main className="flex h-full flex-col items-center justify-center gap-10 pt-16">
             {children}
           </main>
         </StoreProvider>
