@@ -6,7 +6,7 @@ type GetStatusProps = Omit<InfoProps, "classes"> &
 
 export const getStatus = ({ win, draw, currentPlayer }: GetStatusProps) =>
   draw ? (
-    <span>The game ended with a draw</span>
+    <span>Draw!</span>
   ) : (
     <>
       <span>Player</span>
