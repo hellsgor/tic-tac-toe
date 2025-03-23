@@ -1,16 +1,12 @@
-import { getString } from "@/helpers/getString";
+import clsx from "clsx";
 import { ReactNode } from "react";
 
 export function Container({
   children,
-  maxWidth,
+  className,
 }: {
   children: ReactNode;
-  maxWidth?: number;
+  className?: string;
 }) {
-  const classes = getString(
-    maxWidth ? `max-w-[${maxWidth}px]` : null,
-    "w-full px-8",
-  );
-  return <div className={classes}>{children}</div>;
+  return <div className={clsx("w-full", "px-8", className)}>{children}</div>;
 }
