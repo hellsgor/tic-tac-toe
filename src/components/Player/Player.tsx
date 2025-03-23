@@ -22,7 +22,7 @@ export function Player({ imgSrc, userName, rate }: PlayerProps) {
       </Avatar>
 
       <div className="flex flex-col">
-        <span className="text-xs">{userName}</span>
+        <span className="text-sm">{userName}</span>
         <span className="text-xs text-gray-500">Rate: {rate}</span>
       </div>
     </div>
