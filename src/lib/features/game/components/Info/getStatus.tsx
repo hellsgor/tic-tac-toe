@@ -1,7 +1,7 @@
 import { InfoProps } from "@/models";
 import { GameState } from "../../game";
-import { OIcon } from "@/UI/icons/OIcon";
-import { XIcon } from "@/UI/icons/XIcon";
+import OIcon from "@/UI/icons/OIcon";
+import XIcon from "@/UI/icons/XIcon";
 
 type GetStatusProps = Omit<InfoProps, "classes"> &
   Pick<GameState, "currentPlayer">;

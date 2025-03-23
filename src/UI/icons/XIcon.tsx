@@ -1,4 +1,6 @@
-export function XIcon() {
+import { memo } from "react";
+
+const XIcon = memo(() => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,4 +18,8 @@ export function XIcon() {
       <path d="M6 6l12 12" />
     </svg>
   );
-}
+});
+
+XIcon.displayName = "XIcon";
+
+export default XIcon;
