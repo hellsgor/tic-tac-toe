@@ -9,7 +9,13 @@ export function Player({ imgSrc, userName, rate }: PlayerProps) {
     <div className="flex items-center gap-x-3">
       <Avatar>
         {imgSrc ? (
-          <Image src={imgSrc} alt="user image" width={32} height={32} />
+          <Image
+            src={imgSrc}
+            alt="user image"
+            width={32}
+            height={32}
+            unoptimized={true}
+          />
         ) : (
           <UserCircleIcon className="size-8 stroke-1" />
         )}
