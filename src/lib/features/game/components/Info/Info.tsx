@@ -14,6 +14,21 @@ export default function Info({ className, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
+  const players = [
+    {
+      userName: "Henry",
+      rate: 1234,
+      imgSrc: "/images/userExample1.webp",
+      icon: <XIcon />,
+    },
+    {
+      userName: "Sophie",
+      rate: 1234,
+      imgSrc: "/images/userExample2.webp",
+      icon: <OIcon />,
+    },
+  ];
+
   const dispatch = useAppDispatch();
 
   const handleResetBtnClick = useCallback(() => {
@@ -32,12 +47,7 @@ export default function Info({ className, win, draw }: InfoProps) {
   return (
     <div className={clsx("flex flex-col justify-between gap-y-5", className)}>
       <div className="grid auto-cols-fr grid-cols-3 items-center justify-center gap-x-12 rounded-lg p-4 shadow-2xl">
-        {player({
-          userName: "Henry",
-          rate: 1234,
-          imgSrc: "/images/userExample1.webp",
-          icon: <XIcon />,
-        })}
+        {player(players[0])}
 
         <div className="flex flex-col items-center justify-center">
           <InfoRow>
@@ -46,12 +56,7 @@ export default function Info({ className, win, draw }: InfoProps) {
           <InfoRow>{getStatus({ win, draw, currentPlayer })}</InfoRow>
         </div>
 
-        {player({
-          userName: "Sophie",
-          rate: 1234,
-          imgSrc: "/images/userExample2.webp",
-          icon: <OIcon />,
-        })}
+        {player(players[1])}
       </div>
 
       <div className="flex items-center gap-x-5">
