@@ -12,12 +12,12 @@ export function Player({ imgSrc, userName, rate }: PlayerProps) {
           <Image
             src={imgSrc}
             alt="user image"
-            width={32}
-            height={32}
+            width={36}
+            height={36}
             unoptimized={true}
           />
         ) : (
-          <UserCircleIcon className="size-8 stroke-1" />
+          <UserCircleIcon className="size-9 stroke-1" />
         )}
       </Avatar>
 
