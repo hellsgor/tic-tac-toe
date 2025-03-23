@@ -2,12 +2,7 @@ import { memo } from "react";
 import { Avatar } from "../../UI/Avatar";
 import Image from "next/image";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-
-interface PlayerProps {
-  imgSrc?: string;
-  userName: string;
-  rate: number;
-}
+import { PlayerProps } from "@/models";
 
 export function Player({ imgSrc, userName, rate }: PlayerProps) {
   return (
