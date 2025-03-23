@@ -3,3 +3,7 @@ export interface PlayerProps {
   userName: string;
   rate: number;
 }
+
+export interface PlayerPropsWithIcon extends PlayerProps {
+  icon: string;
+}
