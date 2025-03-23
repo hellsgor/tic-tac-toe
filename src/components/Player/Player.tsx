@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Avatar } from "../../UI/Avatar";
 import Image from "next/image";
-import { ChevronDownIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 interface PlayerProps {
   imgSrc?: string;
@@ -11,7 +11,7 @@ interface PlayerProps {
 
 export function Player({ imgSrc, userName, rate }: PlayerProps) {
   return (
-    <button className="flex cursor-pointer items-center gap-x-3 text-left transition-colors hover:text-(--color-hover)">
+    <div className="flex items-center gap-x-3">
       <Avatar>
         {imgSrc ? (
           <Image src={imgSrc} alt="user image" width={32} height={32} />
@@ -24,9 +24,7 @@ export function Player({ imgSrc, userName, rate }: PlayerProps) {
         <span className="text-xs">{userName}</span>
         <span className="text-xs text-gray-500">Rate: {rate}</span>
       </div>
-
-      <ChevronDownIcon className="size-4" />
-    </button>
+    </div>
   );
 }
 
