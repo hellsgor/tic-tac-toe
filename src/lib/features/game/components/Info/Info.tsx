@@ -37,7 +37,12 @@ export default function Info({ className, win, draw }: InfoProps) {
 
   const player = ({ userName, rate, imgSrc, icon }: PlayerPropsWithIcon) => (
     <div className="relative flex items-center pl-1">
-      <MemoizedPlayer userName={userName} rate={rate} imgSrc={imgSrc} />
+      <MemoizedPlayer
+        userName={userName}
+        rate={rate}
+        imgSrc={imgSrc}
+        className="w-36"
+      />
       <div className="bg-dark-bg absolute -bottom-0 -left-0 flex size-4 items-center justify-center rounded-full p-0.5">
         {icon}
       </div>
@@ -46,10 +51,10 @@ export default function Info({ className, win, draw }: InfoProps) {
 
   return (
     <div className={clsx("flex flex-col justify-between gap-y-5", className)}>
-      <div className="grid auto-cols-fr grid-cols-3 items-center justify-center gap-x-12 rounded-lg p-4 shadow-2xl">
+      <div className="flex items-center justify-center gap-x-12 rounded-lg p-4 shadow-2xl">
         {player(players[0])}
 
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex w-40 flex-col items-center justify-center">
           <InfoRow>
             <span>Move #{win.length || draw ? move - 1 : move}</span>
           </InfoRow>
