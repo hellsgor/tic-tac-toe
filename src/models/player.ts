@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface PlayerProps {
   imgSrc?: string;
   userName: string;
@@ -5,5 +7,5 @@ export interface PlayerProps {
 }
 
 export interface PlayerPropsWithIcon extends PlayerProps {
-  icon: string;
+  icon: ReactNode;
 }
