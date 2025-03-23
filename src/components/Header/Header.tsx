@@ -5,9 +5,9 @@ import { MemoizedPlayer } from "../Player/";
 
 export function Header() {
   return (
-    <header className="bg-asphalt absolute top-0 right-0 left-0 py-4 drop-shadow-xl">
+    <header className="bg-asphalt fixed top-0 right-0 left-0 drop-shadow-xl">
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           <Logo />
           <button className="flex cursor-pointer items-center gap-x-3 text-left transition-colors hover:text-(--color-hover)">
             <MemoizedPlayer
