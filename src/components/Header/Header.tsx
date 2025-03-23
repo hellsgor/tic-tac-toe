@@ -11,7 +11,7 @@ export function Header() {
           <Logo />
           <button className="flex cursor-pointer items-center gap-x-3 text-left transition-colors hover:text-(--color-hover)">
             <MemoizedPlayer
-              imgSrc={"/images/user.webp"}
+              imgSrc={"/images/userExample1.webp"}
               userName={"Username"}
               rate={1234}
             />
