@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps, PlayerPropsWithIcon } from "@/models";
-import { getString } from "@/helpers/getString";
 import { MemoizedButton } from "@/UI/Button/Button";
 import { reset } from "../../game";
 import { getStatus } from "./getStatus";
@@ -9,8 +8,9 @@ import { useCallback } from "react";
 import { MemoizedPlayer } from "@/components/Player/Player";
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
+import clsx from "clsx";
 
-export default function Info({ classes, win, draw }: InfoProps) {
+export default function Info({ className, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
@@ -30,7 +30,7 @@ export default function Info({ classes, win, draw }: InfoProps) {
   );
 
   return (
-    <div className={getString(classes)}>
+    <div className={clsx("flex flex-col justify-between gap-y-5", className)}>
       <div className="grid auto-cols-fr grid-cols-3 items-center justify-center gap-x-12 rounded-lg p-4 shadow-2xl">
         {player({
           userName: "Henry",

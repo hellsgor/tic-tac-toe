@@ -11,11 +11,7 @@ export default function Game() {
   return (
     <Container>
       <div className="flex w-full flex-col items-center justify-center gap-10">
-        <Info
-          win={win}
-          draw={draw}
-          classes="flex flex-col justify-between gap-y-5"
-        />
+        <Info win={win} draw={draw} />
         <Field win={win} />
       </div>
     </Container>
