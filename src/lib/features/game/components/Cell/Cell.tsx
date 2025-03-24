@@ -3,6 +3,8 @@ import { CellProps } from "@/models";
 import { memo } from "react";
 import { incrementMove, setCurrentPlayer, setSymbol } from "../../game";
 import clsx from "clsx";
+import XIcon from "@/UI/icons/XIcon";
+import OIcon from "@/UI/icons/OIcon";
 
 const Cell = ({ value, index, win }: CellProps) => {
   const bgColorClass = win
@@ -12,17 +14,9 @@ const Cell = ({ value, index, win }: CellProps) => {
     : "bg-[#242424]";
 
   const classes = clsx(
-    "border-none",
+    "border-none flex justify-center items-center",
     !value ? "cursor-pointer" : "cursor-default",
     bgColorClass,
-    value
-      ? [
-          `${value ? (value === "o" ? "bg-[url(/icons/o.svg)]" : "bg-[url(/icons/x.svg)]") : ""}`,
-          "bg-[auto_70%]",
-          "bg-center",
-          "bg-no-repeat",
-        ]
-      : [],
   );
 
   const dispatch = useAppDispatch();
@@ -38,11 +32,14 @@ const Cell = ({ value, index, win }: CellProps) => {
   };
 
   return (
-    <button
-      className={classes}
-      onClick={handleCellClick}
-      disabled={!!value}
-    ></button>
+    <button className={classes} onClick={handleCellClick} disabled={!!value}>
+      {value && (
+        <div className="w-7/10">
+          {value === "x" && <XIcon />}
+          {value === "o" && <OIcon />}
+        </div>
+      )}
+    </button>
   );
 };
 
