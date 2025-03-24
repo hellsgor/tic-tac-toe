@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { CellProps } from "@/models";
 import { memo } from "react";
 import { incrementMove, setCurrentPlayer, setSymbol } from "../../game";
@@ -7,6 +7,34 @@ import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
 
 const Cell = ({ value, index, win }: CellProps) => {
+  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
+
+  const getIcon = () => {
+    const iconSize = "70%";
+
+    if (value)
+      return value === "x" ? (
+        <XIcon size={iconSize} />
+      ) : (
+        <OIcon size={iconSize} />
+      );
+
+    return (
+      <div
+        className={clsx(
+          "flex items-center justify-center opacity-0 grayscale transition-opacity",
+          currentPlayer === "x" ? "hover:opacity-100" : "hover:opacity-10",
+        )}
+      >
+        {currentPlayer === "x" ? (
+          <XIcon size={iconSize} />
+        ) : (
+          <OIcon size={iconSize} />
+        )}
+      </div>
+    );
+  };
+
   const bgColorClass = win
     ? value === "x"
       ? "bg-(--color-x-win-bg)"
@@ -33,12 +61,7 @@ const Cell = ({ value, index, win }: CellProps) => {
 
   return (
     <button className={classes} onClick={handleCellClick} disabled={!!value}>
-      {value && (
-        <div className="w-7/10">
-          {value === "x" && <XIcon />}
-          {value === "o" && <OIcon />}
-        </div>
-      )}
+      {getIcon()}
     </button>
   );
 };
