@@ -50,10 +50,10 @@ export default function Info({ className, win, draw }: InfoProps) {
       </div>
 
       <div className="flex items-center gap-x-5">
-        <MemoizedButton onClick={handleResetBtnClick} classes="w-full">
+        <MemoizedButton onClick={handleResetBtnClick} className="w-full">
           Offer a draw
         </MemoizedButton>
-        <MemoizedButton classes="w-full">Surrender</MemoizedButton>
+        <MemoizedButton className="w-full">Surrender</MemoizedButton>
       </div>
     </div>
   );
