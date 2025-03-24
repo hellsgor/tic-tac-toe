@@ -35,16 +35,14 @@ const Cell = ({ value, index, win }: CellProps) => {
     );
   };
 
-  const bgColorClass = win
-    ? value === "x"
-      ? "bg-(--color-x-win-bg)"
-      : "bg-(--color-o-win-bg)"
-    : "bg-[#242424]";
-
   const classes = clsx(
-    "border-none flex justify-center items-center",
+    "border-none flex justify-center items-center transition-[background-color]",
     !value ? "cursor-pointer" : "cursor-default",
-    bgColorClass,
+    win
+      ? value === "x"
+        ? "bg-(--color-x-win-bg)"
+        : "bg-(--color-o-win-bg)"
+      : "bg-[#242424]",
   );
 
   const dispatch = useAppDispatch();
