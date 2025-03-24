@@ -7,6 +7,6 @@ export interface PlayerProps {
   rate: number;
 }
 
-export interface PlayerPropsWithIcon extends PlayerProps {
+export interface InfoPlayerProps extends PlayerProps {
   icon: ReactNode;
 }

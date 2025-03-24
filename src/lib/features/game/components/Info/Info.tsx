@@ -1,14 +1,14 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { InfoProps, PlayerPropsWithIcon } from "@/models";
+import { InfoProps } from "@/models";
 import { MemoizedButton } from "@/UI/Button/Button";
 import { reset } from "../../game";
 import { getStatus } from "./getStatus";
 import InfoRow from "./InfoRow";
 import { useCallback } from "react";
-import { MemoizedPlayer } from "@/components/Player/Player";
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
 import clsx from "clsx";
+import { MemoizedInfoPlayer } from "./InfoPlayer";
 
 export default function Info({ className, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
@@ -30,29 +30,14 @@ export default function Info({ className, win, draw }: InfoProps) {
   ];
 
   const dispatch = useAppDispatch();
-
   const handleResetBtnClick = useCallback(() => {
     dispatch(reset());
   }, [dispatch]);
 
-  const player = ({ userName, rate, imgSrc, icon }: PlayerPropsWithIcon) => (
-    <div className="relative flex items-center pl-1">
-      <MemoizedPlayer
-        userName={userName}
-        rate={rate}
-        imgSrc={imgSrc}
-        className="w-36"
-      />
-      <div className="bg-dark-bg absolute -bottom-0 -left-0 flex size-4 items-center justify-center rounded-full p-0.5">
-        {icon}
-      </div>
-    </div>
-  );
-
   return (
     <div className={clsx("flex flex-col justify-between gap-y-5", className)}>
       <div className="flex items-center justify-center gap-x-12 rounded-lg p-4 shadow-2xl">
-        {player(players[0])}
+        <MemoizedInfoPlayer {...players[0]} />
 
         <div className="flex w-40 flex-col items-center justify-center">
           <InfoRow>
@@ -61,7 +46,7 @@ export default function Info({ className, win, draw }: InfoProps) {
           <InfoRow>{getStatus({ win, draw, currentPlayer })}</InfoRow>
         </div>
 
-        {player(players[1])}
+        <MemoizedInfoPlayer {...players[1]} />
       </div>
 
       <div className="flex items-center gap-x-5">
