@@ -1,4 +1,4 @@
-import { MemoizedCell } from "../Cell/Cell";
+import { Cell } from "../Cell/Cell";
 import { useAppSelector } from "@/lib/hooks";
 import { FieldProps } from "@/models";
 import clsx from "clsx";
@@ -14,7 +14,7 @@ export default function Field({ win }: FieldProps) {
       )}
     >
       {cells.map((cell, idx) => (
-        <MemoizedCell
+        <Cell
           key={idx}
           value={cell}
           index={idx}

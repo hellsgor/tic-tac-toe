@@ -1,39 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { CellProps } from "@/models";
-import { memo } from "react";
 import { incrementMove, setCurrentPlayer, setSymbol } from "../../game";
 import clsx from "clsx";
-import XIcon from "@/UI/icons/XIcon";
-import OIcon from "@/UI/icons/OIcon";
+import { getCellIcon } from "./getCellIcon";
 
-const Cell = ({ value, index, win }: CellProps) => {
+export const Cell = ({ value, index, win }: CellProps) => {
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
-
-  const getIcon = () => {
-    const iconSize = "70%";
-
-    if (value)
-      return value === "x" ? (
-        <XIcon size={iconSize} />
-      ) : (
-        <OIcon size={iconSize} />
-      );
-
-    return (
-      <div
-        className={clsx(
-          "flex items-center justify-center opacity-0 grayscale transition-opacity",
-          currentPlayer === "x" ? "hover:opacity-100" : "hover:opacity-10",
-        )}
-      >
-        {currentPlayer === "x" ? (
-          <XIcon size={iconSize} />
-        ) : (
-          <OIcon size={iconSize} />
-        )}
-      </div>
-    );
-  };
 
   const classes = clsx(
     "border-none flex justify-center items-center transition-[background-color]",
@@ -59,9 +31,7 @@ const Cell = ({ value, index, win }: CellProps) => {
 
   return (
     <button className={classes} onClick={handleCellClick} disabled={!!value}>
-      {getIcon()}
+      {getCellIcon({ value, size: "70%", currentPlayer })}
     </button>
   );
 };
-
-export const MemoizedCell = memo(Cell);
