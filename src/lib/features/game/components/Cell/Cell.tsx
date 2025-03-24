@@ -1,8 +1,8 @@
 import { useAppDispatch } from "@/lib/hooks";
-import { CellProps, CellValue } from "@/models";
+import { CellProps } from "@/models";
 import { memo } from "react";
 import { incrementMove, setCurrentPlayer, setSymbol } from "../../game";
-import { getString } from "@/helpers/getString";
+import clsx from "clsx";
 
 const Cell = ({ value, index, win }: CellProps) => {
   const bgColorClass = win
@@ -11,20 +11,19 @@ const Cell = ({ value, index, win }: CellProps) => {
       : "bg-(--color-o-win-bg)"
     : "bg-[#242424]";
 
-  const getClasses = (value: CellValue) =>
-    getString(
-      "border-none",
-      !value ? "cursor-pointer" : "cursor-default",
-      bgColorClass,
-      value
-        ? [
-            `${value ? (value === "o" ? "bg-[url(/icons/o.svg)]" : "bg-[url(/icons/x.svg)]") : ""}`,
-            "bg-[auto_70%]",
-            "bg-center",
-            "bg-no-repeat",
-          ]
-        : [],
-    );
+  const classes = clsx(
+    "border-none",
+    !value ? "cursor-pointer" : "cursor-default",
+    bgColorClass,
+    value
+      ? [
+          `${value ? (value === "o" ? "bg-[url(/icons/o.svg)]" : "bg-[url(/icons/x.svg)]") : ""}`,
+          "bg-[auto_70%]",
+          "bg-center",
+          "bg-no-repeat",
+        ]
+      : [],
+  );
 
   const dispatch = useAppDispatch();
 
@@ -40,7 +39,7 @@ const Cell = ({ value, index, win }: CellProps) => {
 
   return (
     <button
-      className={getClasses(value)}
+      className={classes}
       onClick={handleCellClick}
       disabled={!!value}
     ></button>
