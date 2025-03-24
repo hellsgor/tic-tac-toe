@@ -1,30 +1,21 @@
-import { useAppDispatch } from "@/lib/hooks";
-import { CellProps, CellValue } from "@/models";
-import { memo } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { CellProps } from "@/models";
 import { incrementMove, setCurrentPlayer, setSymbol } from "../../game";
-import { getString } from "@/helpers/getString";
+import clsx from "clsx";
+import { getCellIcon } from "./getCellIcon";
 
-const Cell = ({ value, index, win }: CellProps) => {
-  const bgColorClass = win
-    ? value === "x"
-      ? "bg-(--color-x-win-bg)"
-      : "bg-(--color-o-win-bg)"
-    : "bg-[#242424]";
+export const Cell = ({ value, index, win }: CellProps) => {
+  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
-  const getClasses = (value: CellValue) =>
-    getString(
-      "border-none",
-      !value ? "cursor-pointer" : "cursor-default",
-      bgColorClass,
-      value
-        ? [
-            `${value ? (value === "o" ? "bg-[url(/icons/o.svg)]" : "bg-[url(/icons/x.svg)]") : ""}`,
-            "bg-[auto_70%]",
-            "bg-center",
-            "bg-no-repeat",
-          ]
-        : [],
-    );
+  const classes = clsx(
+    "border-none flex justify-center items-center transition-[background-color]",
+    !value ? "cursor-pointer" : "cursor-default",
+    win
+      ? value === "x"
+        ? "bg-(--color-x-win-bg)"
+        : "bg-(--color-o-win-bg)"
+      : "bg-[#242424]",
+  );
 
   const dispatch = useAppDispatch();
 
@@ -39,12 +30,8 @@ const Cell = ({ value, index, win }: CellProps) => {
   };
 
   return (
-    <button
-      className={getClasses(value)}
-      onClick={handleCellClick}
-      disabled={!!value}
-    ></button>
+    <button className={classes} onClick={handleCellClick} disabled={!!value}>
+      {getCellIcon({ value, size: "70%", currentPlayer })}
+    </button>
   );
 };
-
-export const MemoizedCell = memo(Cell);
