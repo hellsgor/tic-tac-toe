@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { ButtonHTMLAttributes, memo, ReactNode } from "react";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
   children: ReactNode;
 }
 
