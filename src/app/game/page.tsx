@@ -1,8 +1,6 @@
 "use client";
 
-import { useGameChecker } from "../../lib/features/game/hooks/useGameChecker";
-import Field from "../../lib/features/game/components/Field/Field";
-import Info from "../../lib/features/game/components/Info/Info";
+import { Field, Info, useGameChecker } from "@/lib/features/game";
 import { Container } from "@/UI/Container";
 
 export default function Game() {
