@@ -6,15 +6,22 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export const Button = ({ children, className, ...props }: ButtonProps) => {
+export const Button = ({
+  children,
+  className,
+  disabled,
+  ...props
+}: ButtonProps) => {
+  const classes = clsx(
+    " rounded-lg border px-5 py-3 font-mono transition-colors",
+    disabled
+      ? "bg-transparent border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
+      : "bg-dark-bg cursor-pointer border-transparent hover:border-hover",
+    className,
+  );
+
   return (
-    <button
-      className={clsx(
-        "bg-dark-bg hover:border-hover cursor-pointer rounded-lg border border-transparent px-5 py-3 font-mono transition-colors",
-        className,
-      )}
-      {...props}
-    >
+    <button className={classes} disabled={disabled} {...props}>
       {children}
     </button>
   );
