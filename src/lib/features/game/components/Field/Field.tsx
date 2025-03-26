@@ -1,4 +1,4 @@
-import { Cell } from "../Cell/Cell";
+import { Cell } from "../Cell";
 import { useAppSelector } from "@/lib/hooks";
 import { FieldProps } from "@/models";
 import clsx from "clsx";
