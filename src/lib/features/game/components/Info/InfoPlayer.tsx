@@ -2,7 +2,12 @@ import { MemoizedPlayer } from "@/components/Player";
 import { InfoPlayerProps } from "@/models";
 import { memo } from "react";
 
-function InfoPlayer({ userName, rate, imgSrc, icon }: InfoPlayerProps) {
+export const InfoPlayer = memo(function InfoPlayer({
+  userName,
+  rate,
+  imgSrc,
+  icon,
+}: InfoPlayerProps) {
   return (
     <div className="relative flex items-center pl-1">
       <MemoizedPlayer
@@ -16,6 +21,4 @@ function InfoPlayer({ userName, rate, imgSrc, icon }: InfoPlayerProps) {
       </div>
     </div>
   );
-}
-
-export const MemoizedInfoPlayer = memo(InfoPlayer);
+});
