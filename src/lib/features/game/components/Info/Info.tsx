@@ -1,13 +1,14 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { reset } from "../../game";
-import { ReactNode, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
 import clsx from "clsx";
 import { InfoPlayer } from "./InfoPlayer";
 import { InfoActions } from "./InfoActions";
 import { InfoMove } from "./InfoMove";
+import { Panel } from "@/UI/Panel";
 
 export default function Info({ className, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
@@ -40,7 +41,7 @@ export default function Info({ className, win, draw }: InfoProps) {
 
   return (
     <div className={classes}>
-      <Panel>
+      <Panel justify={"center"}>
         <InfoPlayer {...players[0]} />
         <InfoMove
           win={win}
@@ -51,14 +52,6 @@ export default function Info({ className, win, draw }: InfoProps) {
         <InfoPlayer {...players[1]} />
       </Panel>
       <InfoActions handleReset={handleResetBtnClick} />
-    </div>
-  );
-}
-
-function Panel({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex items-center justify-center gap-x-12 rounded-lg p-4 shadow-2xl">
-      {children}
     </div>
   );
 }
