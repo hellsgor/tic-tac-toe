@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 export default function Field({ win }: FieldProps) {
   const cells = useAppSelector((state) => state.game.cells);
+  const winIndices = new Set(win.length ? win[0] : []);
 
   return (
     <div
@@ -14,12 +15,7 @@ export default function Field({ win }: FieldProps) {
       )}
     >
       {cells.map((cell, idx) => (
-        <Cell
-          key={idx}
-          value={cell}
-          index={idx}
-          win={!!win.length && win[0].includes(idx)}
-        />
+        <Cell key={idx} value={cell} index={idx} win={winIndices.has(idx)} />
       ))}
     </div>
   );
