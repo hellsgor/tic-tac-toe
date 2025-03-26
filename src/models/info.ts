@@ -9,3 +9,5 @@ export interface InfoData {
   currentPlayer: CellValueSymbols;
   move: number;
 }
+
+export interface InfoMoveProps extends InfoData, GameCheck {}
