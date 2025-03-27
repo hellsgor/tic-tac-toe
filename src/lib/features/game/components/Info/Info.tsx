@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { reset } from "../../game";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
 import clsx from "clsx";
@@ -10,27 +10,24 @@ import { InfoActions } from "./InfoActions";
 import { InfoMove } from "./InfoMove";
 import { Panel } from "@/UI/Panel";
 
+const players = [
+  {
+    userName: "Henry",
+    rate: 1234,
+    imgSrc: "/images/userExample1.webp",
+    icon: <XIcon />,
+  },
+  {
+    userName: "Sophie",
+    rate: 1234,
+    imgSrc: "/images/userExample2.webp",
+    icon: <OIcon />,
+  },
+];
+
 export default function Info({ className, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
-
-  const players = useMemo(
-    () => [
-      {
-        userName: "Henry",
-        rate: 1234,
-        imgSrc: "/images/userExample1.webp",
-        icon: <XIcon />,
-      },
-      {
-        userName: "Sophie",
-        rate: 1234,
-        imgSrc: "/images/userExample2.webp",
-        icon: <OIcon />,
-      },
-    ],
-    [],
-  );
 
   const classes = clsx("flex flex-col justify-between gap-y-5", className);
 
