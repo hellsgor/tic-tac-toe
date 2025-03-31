@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { reset } from "../../game";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
 import clsx from "clsx";
@@ -29,12 +29,20 @@ export default function Info({ className, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
+  const [timer, setTimer] = useState(60);
+
   const classes = clsx("flex flex-col justify-between gap-y-5", className);
 
   const dispatch = useAppDispatch();
   const handleResetBtnClick = useCallback(() => {
     dispatch(reset());
   }, [dispatch]);
+
+  useEffect(() => {
+    setInterval(() => {
+      setTimer((prevTimer) => Math.max(prevTimer - 1, 0));
+    }, 1000);
+  }, []);
 
   return (
     <div className={classes}>
@@ -45,6 +53,7 @@ export default function Info({ className, win, draw }: InfoProps) {
           draw={draw}
           currentPlayer={currentPlayer}
           move={move}
+          timer={timer}
         />
         <InfoPlayer {...players[1]} />
       </Panel>
