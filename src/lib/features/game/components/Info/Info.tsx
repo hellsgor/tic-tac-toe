@@ -44,6 +44,10 @@ export default function Info({ className, win, draw }: InfoProps) {
     }, 1000);
   }, []);
 
+  useEffect(() => {
+    setTimer(win.length || draw ? 0 : 60);
+  }, [currentPlayer, win, draw]);
+
   return (
     <div className={classes}>
       <Panel justify={"center"}>
