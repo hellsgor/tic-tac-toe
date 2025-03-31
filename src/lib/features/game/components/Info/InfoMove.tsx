@@ -12,7 +12,7 @@ export const InfoMove: FC<InfoMoveProps> = ({
 }) => {
   const minutes = `${Math.floor(timer / 60)}`.padStart(2, "0");
   const seconds = `${timer % 60}`.padStart(2, "0");
-  const timerColor = getTimerColor(timer);
+  const timerColor = getTimerColor(timer, !!win.length || draw);
 
   return (
     <div className="flex w-40 flex-col items-center justify-center">
@@ -29,20 +29,31 @@ export const InfoMove: FC<InfoMoveProps> = ({
   );
 };
 
-function getTimerColor(timer: number) {
+const colors = {
+  red: [154, 255],
+  green: [205, 0],
+  blue: [50, 0],
+};
+
+function getTimerColor(timer: number, isWinOrDraw: boolean) {
+  if (isWinOrDraw)
+    return `rgb(${colors.red[0]}, ${colors.green[0]}, ${colors.blue[0]})`;
+
   const ratio = timer >= 30 ? 1 : timer <= 10 ? 0 : (30 - timer) / 30;
 
-  const getColorValue = (start: number, end: number, isSubtraction = true) => {
+  const getColorValue = (color: keyof typeof colors, isSubtraction = true) => {
     return timer >= 30
-      ? start
+      ? colors[color][0]
       : timer <= 10
-        ? end
-        : Math.round(start * (isSubtraction ? 1 - ratio : 1 + ratio));
+        ? colors[color][1]
+        : Math.round(
+            colors[color][0] * (isSubtraction ? 1 - ratio : 1 + ratio),
+          );
   };
 
-  const red = getColorValue(154, 255, false);
-  const green = getColorValue(205, 0);
-  const blue = getColorValue(50, 0);
+  const red = getColorValue("red", false);
+  const green = getColorValue("green");
+  const blue = getColorValue("blue");
 
   return `rgb(${red}, ${green}, ${blue})`;
 }
