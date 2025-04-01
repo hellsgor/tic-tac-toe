@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 type useTimerDeps = [CellValueSymbols, Win, Draw];
 
 export const useTimer = (initialTime: number, deps: useTimerDeps) => {
+  const [currentPlayer, win, draw] = deps;
   const [timer, setTimer] = useState(initialTime);
 
   useEffect(() => {
@@ -15,8 +16,8 @@ export const useTimer = (initialTime: number, deps: useTimerDeps) => {
   }, []);
 
   useEffect(() => {
-    setTimer(initialTime);
-  }, deps);
+    setTimer(!!win.length || draw ? 0 : 60);
+  }, [currentPlayer, win, draw]);
 
   return timer;
 };
