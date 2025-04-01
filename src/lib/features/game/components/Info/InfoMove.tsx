@@ -2,6 +2,7 @@ import { InfoMoveProps } from "@/models";
 import { FC } from "react";
 import InfoRow from "./InfoRow";
 import { getStatus } from "./getStatus";
+import { getTimerColor } from "./geTimerColor";
 
 export const InfoMove: FC<InfoMoveProps> = ({
   win,
@@ -28,32 +29,3 @@ export const InfoMove: FC<InfoMoveProps> = ({
     </div>
   );
 };
-
-const colors = {
-  red: [154, 255],
-  green: [205, 0],
-  blue: [50, 0],
-};
-
-function getTimerColor(timer: number, isWinOrDraw: boolean) {
-  if (isWinOrDraw)
-    return `rgb(${colors.red[0]}, ${colors.green[0]}, ${colors.blue[0]})`;
-
-  const ratio = timer >= 30 ? 1 : timer <= 10 ? 0 : (30 - timer) / 30;
-
-  const getColorValue = (color: keyof typeof colors, isSubtraction = true) => {
-    return timer >= 30
-      ? colors[color][0]
-      : timer <= 10
-        ? colors[color][1]
-        : Math.round(
-            colors[color][0] * (isSubtraction ? 1 - ratio : 1 + ratio),
-          );
-  };
-
-  const red = getColorValue("red", false);
-  const green = getColorValue("green");
-  const blue = getColorValue("blue");
-
-  return `rgb(${red}, ${green}, ${blue})`;
-}
