@@ -1,0 +1,22 @@
+import { CellValueSymbols, Draw, Win } from "@/models";
+import { useEffect, useState } from "react";
+
+type useTimerDeps = [CellValueSymbols, Win, Draw];
+
+export const useTimer = (initialTime: number, deps: useTimerDeps) => {
+  const [timer, setTimer] = useState(initialTime);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer((prev) => Math.max(prev - 1, 0));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    setTimer(initialTime);
+  }, deps);
+
+  return timer;
+};
