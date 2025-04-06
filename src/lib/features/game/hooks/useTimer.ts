@@ -16,7 +16,7 @@ export const useTimer = (initialTime: number, deps: useTimerDeps) => {
   }, []);
 
   useEffect(() => {
-    setTimer(!!win.length || draw ? 0 : 60);
+    setTimer(!!win.length || draw ? 0 : initialTime);
   }, [currentPlayer, win, draw]);
 
   return timer;
