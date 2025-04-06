@@ -2,7 +2,7 @@ import { InfoMoveProps } from "@/models";
 import { FC } from "react";
 import InfoRow from "./InfoRow";
 import { getStatus } from "./getStatus";
-import { getTimerColor } from "./geTimerColor";
+import { getTimerColor } from "./getTimerColor";
 
 export const InfoMove: FC<InfoMoveProps> = ({
   win,
@@ -11,8 +11,8 @@ export const InfoMove: FC<InfoMoveProps> = ({
   move,
   timer,
 }) => {
-  const minutes = `${Math.floor(timer / 60)}`.padStart(2, "0");
-  const seconds = `${timer % 60}`.padStart(2, "0");
+  const minutes = `${Math.floor(timer.left / 60)}`.padStart(2, "0");
+  const seconds = `${timer.left % 60}`.padStart(2, "0");
   const timerColor = getTimerColor(timer, !!win.length || draw);
 
   return (

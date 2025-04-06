@@ -19,5 +19,8 @@ export const useTimer = (initialTime: number, deps: useTimerDeps) => {
     setTimer(!!win.length || draw ? 0 : initialTime);
   }, [currentPlayer, win, draw]);
 
-  return timer;
+  return {
+    left: timer,
+    initial: initialTime,
+  };
 };

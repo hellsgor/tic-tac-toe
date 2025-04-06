@@ -10,6 +10,11 @@ export interface InfoData {
   move: number;
 }
 
+export interface Timer {
+  left: number;
+  initial: number;
+}
+
 export interface InfoMoveProps extends InfoData, GameCheck {
-  timer: number;
+  timer: Timer;
 }

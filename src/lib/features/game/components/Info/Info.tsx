@@ -30,7 +30,9 @@ export default function Info({ className, win, draw }: InfoProps) {
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
-  const timer = useTimer(60, [currentPlayer, win, draw]);
+  const timer = useTimer(10, [currentPlayer, win, draw]);
+
+  console.log(timer);
 
   const classes = clsx("flex flex-col justify-between gap-y-5", className);
 

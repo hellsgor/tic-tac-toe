@@ -1,18 +1,24 @@
 import { TIMER_COLORS } from "@/constants";
+import { Timer } from "@/models";
 
-export function getTimerColor(timer: number, isWinOrDraw: boolean) {
+export function getTimerColor({ left, initial }: Timer, isWinOrDraw: boolean) {
   if (isWinOrDraw)
     return `rgb(${TIMER_COLORS.red[0]}, ${TIMER_COLORS.green[0]}, ${TIMER_COLORS.blue[0]})`;
 
-  const ratio = timer >= 30 ? 1 : timer <= 10 ? 0 : (30 - timer) / 30;
+  const ratio =
+    left >= initial / 2
+      ? 1
+      : left <= initial / 6
+        ? 0
+        : (initial / 2 - left) / (initial / 2);
 
   const getColorValue = (
     color: keyof typeof TIMER_COLORS,
     isSubtraction = true,
   ) => {
-    return timer >= 30
+    return left >= initial / 2
       ? TIMER_COLORS[color][0]
-      : timer <= 10
+      : left <= initial / 6
         ? TIMER_COLORS[color][1]
         : Math.round(
             TIMER_COLORS[color][0] * (isSubtraction ? 1 - ratio : 1 + ratio),
