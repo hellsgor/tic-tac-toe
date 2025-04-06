@@ -1,13 +1,13 @@
 import { useAppDispatch } from "@/lib/hooks";
 import { useCallback, useMemo } from "react";
-import { incrementMove, setCurrentPlayer, setTechWin } from "../game";
+import { incrementMove, changeCurrentPlayer, setTechWin } from "../game";
 
 export function useTechWin() {
   const dispatch = useAppDispatch();
 
   const setTechnicalWin = useCallback(() => {
     dispatch(setTechWin());
-    dispatch(setCurrentPlayer());
+    dispatch(changeCurrentPlayer());
     dispatch(incrementMove());
   }, [dispatch]);
 

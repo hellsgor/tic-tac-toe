@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { incrementMove, setCurrentPlayer, setSymbol } from "../game";
+import { incrementMove, changeCurrentPlayer, setSymbol } from "../game";
 import { useCallback, useMemo } from "react";
 
 export function useDoMove() {
@@ -9,7 +9,7 @@ export function useDoMove() {
   const doMove = useCallback(
     (index: number) => {
       dispatch(setSymbol({ index, symbol: currentPlayer }));
-      dispatch(setCurrentPlayer());
+      dispatch(changeCurrentPlayer());
       dispatch(incrementMove());
     },
     [currentPlayer, dispatch],
