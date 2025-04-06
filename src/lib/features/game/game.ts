@@ -1,14 +1,16 @@
-import { CellPayload, CellValue, InfoData } from "@/models";
+import { CellPayload, CellValue, InfoData, TechWin } from "@/models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface GameState extends InfoData {
   cells: CellValue[];
+  techWin: TechWin;
 }
 
 const initialState: GameState = {
   cells: Array(9).fill(null),
   currentPlayer: "x",
   move: 1,
+  techWin: false,
 };
 
 export const gameSlice = createSlice({
@@ -27,14 +29,19 @@ export const gameSlice = createSlice({
       state.move += 1;
     },
 
+    setTechWin: (state) => {
+      state.techWin = true;
+    },
+
     reset: (state) => {
       state.cells = initialState.cells;
       state.currentPlayer = initialState.currentPlayer;
       state.move = initialState.move;
+      state.techWin = initialState.techWin;
     },
   },
 });
 
-export const { setSymbol, setCurrentPlayer, incrementMove, reset } =
+export const { setSymbol, setCurrentPlayer, incrementMove, setTechWin, reset } =
   gameSlice.actions;
 export default gameSlice.reducer;
