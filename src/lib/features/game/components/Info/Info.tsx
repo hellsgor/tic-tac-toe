@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { InfoProps } from "@/models";
 import { reset } from "../../game";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
 import clsx from "clsx";
@@ -10,6 +10,7 @@ import { InfoActions } from "./InfoActions";
 import { InfoMove } from "./InfoMove";
 import { Panel } from "@/UI/Panel";
 import { useTimer } from "../../hooks";
+import { useTechWin } from "../../hooks/useTechWin";
 
 const players = [
   {
@@ -27,14 +28,16 @@ const players = [
 ];
 
 export default function Info({ className, win, draw }: InfoProps) {
+  const classes = clsx("flex flex-col justify-between gap-y-5", className);
+
   const move = useAppSelector((state) => state.game.move);
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
   const timer = useTimer(10, [currentPlayer, win, draw]);
-
-  console.log(timer);
-
-  const classes = clsx("flex flex-col justify-between gap-y-5", className);
+  const { setTechnicalWin } = useTechWin();
+  useEffect(() => {
+    if (timer.left <= 0) setTechnicalWin();
+  }, [timer.left, setTechnicalWin]);
 
   const dispatch = useAppDispatch();
   const handleResetBtnClick = useCallback(() => {
