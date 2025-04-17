@@ -1,8 +1,8 @@
 import Field from "./components/Field/Field";
 import Info from "./components/Info/Info";
-import { useGameChecker } from "./hooks/useGameChecker";
+import { checkGame } from "./thunks/checkGame";
 
 export * from "./game";
 export { Field };
 export { Info };
-export { useGameChecker };
+export { checkGame };

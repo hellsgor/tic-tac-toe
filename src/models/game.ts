@@ -18,6 +18,7 @@ export interface GameState {
   winCombination: WinCombination;
   techWin: TechWin;
   winner: Winner;
+  cellsCount: number;
 }
 
 export interface GameCheck {

@@ -1,4 +1,4 @@
-import { CellValue, CellValueSymbols } from "@/models";
+import { CellValue, PlayerSymbol } from "@/models";
 import OIcon from "@/UI/icons/OIcon";
 import XIcon from "@/UI/icons/XIcon";
 import clsx from "clsx";
@@ -6,15 +6,15 @@ import clsx from "clsx";
 export interface getCellIconProps {
   size: string;
   value: CellValue;
-  currentPlayer: CellValueSymbols;
+  currentPlayer: PlayerSymbol;
 }
 
 export function getCellIcon({ size, value, currentPlayer }: getCellIconProps) {
   const Icon = value
-    ? value === "x"
+    ? value === PlayerSymbol.X
       ? XIcon
       : OIcon
-    : currentPlayer === "x"
+    : currentPlayer === PlayerSymbol.X
       ? XIcon
       : OIcon;
 
@@ -24,7 +24,9 @@ export function getCellIcon({ size, value, currentPlayer }: getCellIconProps) {
     <div
       className={clsx(
         "flex items-center justify-center opacity-0 grayscale transition-opacity",
-        currentPlayer === "x" ? "hover:opacity-100" : "hover:opacity-10",
+        currentPlayer === PlayerSymbol.X
+          ? "hover:opacity-100"
+          : "hover:opacity-10",
       )}
     >
       <Icon size={size} />

@@ -1,20 +1,31 @@
 import { Cell } from "../Cell";
 import { useAppSelector } from "@/lib/hooks";
-import { FieldProps } from "@/models";
 import clsx from "clsx";
+import { useDoMove } from "../../hooks";
 
-export default function Field({ win }: FieldProps) {
-  const cells = useAppSelector((state) => state.game.cells);
-  const winIndices = new Set(win.length ? win[0] : []);
+export default function Field() {
+  const win = useAppSelector((state) => state.game.win);
+  const techWin = useAppSelector((state) => state.game.techWin);
+  const winCombination = useAppSelector((state) => state.game.winCombination);
+  const cellsCount = useAppSelector((state) => state.game.cellsCount);
+  const pseudoCells = Array(cellsCount).fill(null);
+
+  const doMove = useDoMove();
+
   const classes = clsx(
     "grid aspect-square w-100 grid-cols-3 grid-rows-3 gap-0.25 bg-[#434343]",
-    win.length ? "pointer-events-none" : null,
+    win || techWin ? "pointer-events-none" : null,
   );
 
   return (
     <div className={classes}>
-      {cells.map((cell, idx) => (
-        <Cell key={idx} value={cell} index={idx} win={winIndices.has(idx)} />
+      {pseudoCells.map((_, idx) => (
+        <Cell
+          key={idx}
+          index={idx}
+          isWin={winCombination.includes(idx)}
+          doMove={doMove}
+        />
       ))}
     </div>
   );

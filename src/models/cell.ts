@@ -1,14 +1,12 @@
 import { PlayerSymbol } from "./playerSymbol";
 
+export type CellValue = PlayerSymbol | null;
+
 export interface CellProps {
-  value: CellValue;
   index: number;
-  win: boolean;
+  isWin: boolean;
+  doMove: (index: number, symbol: PlayerSymbol) => void;
 }
-
-export type CellValueSymbols = PlayerSymbol;
-
-export type CellValue = CellValueSymbols | null;
 
 export interface CellPayload {
   index: number;

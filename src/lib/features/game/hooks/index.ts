@@ -1,3 +1,3 @@
 export { useDoMove } from "./useDoMove";
-export { useGameChecker } from "./useGameChecker";
+export { checkGame } from "../thunks/checkGame";
 export { useTimer } from "./useTimer";
