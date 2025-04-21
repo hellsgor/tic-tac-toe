@@ -1,15 +1,18 @@
+import { useAppSelector } from "@/lib/hooks";
 import { CellValue, PlayerSymbol } from "@/models";
 import OIcon from "@/UI/icons/OIcon";
 import XIcon from "@/UI/icons/XIcon";
 import clsx from "clsx";
+import { FC } from "react";
 
-export interface getCellIconProps {
+export interface CellIconProps {
   size: string;
   value: CellValue;
-  currentPlayer: PlayerSymbol;
 }
 
-export function getCellIcon({ size, value, currentPlayer }: getCellIconProps) {
+export const CellIcon: FC<CellIconProps> = ({ size, value }) => {
+  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
+
   const Icon = value
     ? value === PlayerSymbol.X
       ? XIcon
@@ -32,4 +35,4 @@ export function getCellIcon({ size, value, currentPlayer }: getCellIconProps) {
       <Icon size={size} />
     </div>
   );
-}
+};

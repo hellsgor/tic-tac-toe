@@ -1,5 +1,5 @@
 import { CellProps } from "@/models";
-import { getCellIcon } from "./getCellIcon";
+import { CellIcon } from "./CellIcon";
 import { getClasses } from "./getClasses";
 import { useAppSelector } from "@/lib/hooks";
 import { selectCell } from "../../selectors";
@@ -16,7 +16,7 @@ export const Cell = ({ index, isWin }: CellProps) => {
       onClick={() => doMove(index)}
       disabled={!!value}
     >
-      {getCellIcon({ value, size: "70%", currentPlayer })}
+      <CellIcon value={value} size={"70%"} />
     </button>
   );
 };
