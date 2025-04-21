@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { changeCurrentPlayer, incrementMove, setSymbol } from "../game";
 import { useCallback } from "react";
-import { checkGame } from "../";
+import { checkGame } from "../thunks";
 
 export function useDoMove() {
   const dispatch = useAppDispatch();
