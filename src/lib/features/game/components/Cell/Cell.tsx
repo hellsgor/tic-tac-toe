@@ -8,15 +8,10 @@ export const Cell = ({ index, isWin, doMove }: CellProps) => {
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
   const value = useAppSelector(selectCell(index));
 
-  const handleCellClick = () => {
-    if (value) return;
-    doMove(index, currentPlayer);
-  };
-
   return (
     <button
       className={getClasses(value, isWin)}
-      onClick={handleCellClick}
+      onClick={doMove}
       disabled={!!value}
     >
       {getCellIcon({ value, size: "70%", currentPlayer })}

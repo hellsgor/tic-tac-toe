@@ -1,16 +1,16 @@
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { changeCurrentPlayer, incrementMove, setSymbol } from "../game";
 import { useCallback } from "react";
-import { CurrentPlayer } from "@/models";
 import { checkGame } from "../";
 
 export function useDoMove() {
   const dispatch = useAppDispatch();
+  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
   const doMove = useCallback(
-    (index: number, symbol: CurrentPlayer) => {
+    (index: number) => {
       dispatch((dispatch, getState) => {
-        dispatch(setSymbol({ index, symbol }));
+        dispatch(setSymbol({ index, symbol: currentPlayer }));
 
         dispatch(checkGame());
 
@@ -23,7 +23,7 @@ export function useDoMove() {
         }
       });
     },
-    [dispatch],
+    [dispatch, currentPlayer],
   );
 
   return doMove;

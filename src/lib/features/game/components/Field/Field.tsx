@@ -24,7 +24,9 @@ export default function Field() {
           key={idx}
           index={idx}
           isWin={winCombination.includes(idx)}
-          doMove={doMove}
+          doMove={() => {
+            doMove(idx);
+          }}
         />
       ))}
     </div>
