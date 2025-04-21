@@ -5,7 +5,7 @@ import { useAppSelector } from "@/lib/hooks";
 import { selectCell } from "../../selectors";
 import { useDoMove } from "../../hooks";
 
-export const Cell = ({ index, isWin }: CellProps) => {
+export default function Cell({ index, isWin }: CellProps) {
   const value = useAppSelector(selectCell(index));
 
   const doMove = useDoMove();
@@ -19,4 +19,4 @@ export const Cell = ({ index, isWin }: CellProps) => {
       <CellIcon value={value} size={"70%"} />
     </button>
   );
-};
+}
