@@ -5,7 +5,6 @@ export type CellValue = PlayerSymbol | null;
 export interface CellProps {
   index: number;
   isWin: boolean;
-  doMove: () => void;
 }
 
 export interface CellPayload {
