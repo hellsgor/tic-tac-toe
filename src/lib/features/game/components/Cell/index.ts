@@ -1,1 +1,1 @@
-export { Cell } from "./Cell";
+export { default } from "./Cell";

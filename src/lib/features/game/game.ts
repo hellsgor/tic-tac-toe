@@ -1,16 +1,24 @@
-import { CellPayload, CellValue, InfoData, TechWin } from "@/models";
+import {
+  CellPayload,
+  GameState,
+  PlayerSymbol,
+  WinCombination,
+  Winner,
+} from "@/models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface GameState extends InfoData {
-  cells: CellValue[];
-  techWin: TechWin;
-}
+const cellsCount = 9;
 
 const initialState: GameState = {
-  cells: Array(9).fill(null),
-  currentPlayer: "x",
+  cells: Array(cellsCount).fill(null),
+  currentPlayer: PlayerSymbol.X,
   move: 1,
+  draw: false,
+  win: false,
+  winCombination: [],
   techWin: false,
+  winner: null,
+  cellsCount,
 };
 
 export const gameSlice = createSlice({
@@ -21,8 +29,11 @@ export const gameSlice = createSlice({
       state.cells[action.payload.index] = action.payload.symbol;
     },
 
-    setCurrentPlayer: (state) => {
-      state.currentPlayer = state.currentPlayer === "o" ? "x" : "o";
+    changeCurrentPlayer: (state) => {
+      state.currentPlayer =
+        state.currentPlayer === PlayerSymbol.O
+          ? PlayerSymbol.X
+          : PlayerSymbol.O;
     },
 
     incrementMove: (state) => {
@@ -31,17 +42,46 @@ export const gameSlice = createSlice({
 
     setTechWin: (state) => {
       state.techWin = true;
+      state.win = true;
+      state.winner =
+        state.currentPlayer === PlayerSymbol.X
+          ? PlayerSymbol.O
+          : PlayerSymbol.X;
+    },
+
+    setWinCombination: (
+      state,
+      action: PayloadAction<{ winCombination: WinCombination; winner: Winner }>,
+    ) => {
+      state.winCombination = action.payload.winCombination;
+      state.win = true;
+      state.winner = action.payload.winner;
+    },
+
+    setDraw: (state) => {
+      state.draw = true;
     },
 
     reset: (state) => {
       state.cells = initialState.cells;
       state.currentPlayer = initialState.currentPlayer;
       state.move = initialState.move;
+      state.draw = initialState.draw;
+      state.win = initialState.win;
+      state.winCombination = initialState.winCombination;
       state.techWin = initialState.techWin;
+      state.winner = initialState.winner;
     },
   },
 });
 
-export const { setSymbol, setCurrentPlayer, incrementMove, setTechWin, reset } =
-  gameSlice.actions;
+export const {
+  setSymbol,
+  changeCurrentPlayer,
+  incrementMove,
+  setTechWin,
+  setWinCombination,
+  setDraw,
+  reset,
+} = gameSlice.actions;
 export default gameSlice.reducer;

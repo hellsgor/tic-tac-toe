@@ -1,25 +1,30 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { incrementMove, setCurrentPlayer, setSymbol } from "../game";
-import { useCallback, useMemo } from "react";
+import { changeCurrentPlayer, incrementMove, setSymbol } from "../game";
+import { useCallback } from "react";
+import { checkGame } from "../thunks";
 
 export function useDoMove() {
   const dispatch = useAppDispatch();
-  const { currentPlayer } = useAppSelector((state) => state.game);
+  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
 
   const doMove = useCallback(
     (index: number) => {
-      dispatch(setSymbol({ index, symbol: currentPlayer }));
-      dispatch(setCurrentPlayer());
-      dispatch(incrementMove());
+      dispatch((dispatch, getState) => {
+        dispatch(setSymbol({ index, symbol: currentPlayer }));
+
+        dispatch(checkGame());
+
+        const win = getState().game.win;
+        const draw = getState().game.draw;
+
+        if (!win && !draw) {
+          dispatch(changeCurrentPlayer());
+          dispatch(incrementMove());
+        }
+      });
     },
-    [currentPlayer, dispatch],
+    [dispatch, currentPlayer],
   );
 
-  return useMemo(
-    () => ({
-      doMove,
-      currentPlayer,
-    }),
-    [doMove, currentPlayer],
-  );
+  return doMove;
 }

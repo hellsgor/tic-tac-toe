@@ -1,14 +1,13 @@
+import { PlayerSymbol } from "./playerSymbol";
+
+export type CellValue = PlayerSymbol | null;
+
 export interface CellProps {
-  value: CellValue;
   index: number;
-  win: boolean;
+  isWin: boolean;
 }
-
-export type CellValueSymbols = "x" | "o";
-
-export type CellValue = CellValueSymbols | null;
 
 export interface CellPayload {
   index: number;
-  symbol: CellValueSymbols;
+  symbol: CellValue;
 }

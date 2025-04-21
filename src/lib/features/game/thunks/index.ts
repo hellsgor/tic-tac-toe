@@ -1,0 +1,1 @@
+export { checkGame } from "./checkGame";
