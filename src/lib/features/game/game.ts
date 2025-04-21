@@ -1,4 +1,10 @@
-import { CellPayload, GameState, PlayerSymbol, WinCombination } from "@/models";
+import {
+  CellPayload,
+  GameState,
+  PlayerSymbol,
+  WinCombination,
+  Winner,
+} from "@/models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const cellsCount = 9;
@@ -36,11 +42,20 @@ export const gameSlice = createSlice({
 
     setTechWin: (state) => {
       state.techWin = true;
+      state.win = true;
+      state.winner =
+        state.currentPlayer === PlayerSymbol.X
+          ? PlayerSymbol.O
+          : PlayerSymbol.X;
     },
 
-    setWinCombination: (state, action: PayloadAction<WinCombination>) => {
-      state.winCombination = action.payload;
+    setWinCombination: (
+      state,
+      action: PayloadAction<{ winCombination: WinCombination; winner: Winner }>,
+    ) => {
+      state.winCombination = action.payload.winCombination;
       state.win = true;
+      state.winner = action.payload.winner;
     },
 
     setDraw: (state) => {
@@ -51,7 +66,11 @@ export const gameSlice = createSlice({
       state.cells = initialState.cells;
       state.currentPlayer = initialState.currentPlayer;
       state.move = initialState.move;
+      state.draw = initialState.draw;
+      state.win = initialState.win;
+      state.winCombination = initialState.winCombination;
       state.techWin = initialState.techWin;
+      state.winner = initialState.winner;
     },
   },
 });

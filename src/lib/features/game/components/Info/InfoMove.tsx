@@ -1,30 +1,21 @@
-import { InfoMoveProps } from "@/models";
-import { FC } from "react";
 import InfoRow from "./InfoRow";
-import { getStatus } from "./getStatus";
-import { getTimerColor } from "./getTimerColor";
+import { Status } from "./Status/Status";
+import { useAppSelector } from "@/lib/hooks";
+import { Timer } from "./Timer/Timer";
 
-export const InfoMove: FC<InfoMoveProps> = ({
-  win,
-  draw,
-  currentPlayer,
-  move,
-  timer,
-}) => {
-  const minutes = `${Math.floor(timer.left / 60)}`.padStart(2, "0");
-  const seconds = `${timer.left % 60}`.padStart(2, "0");
-  const timerColor = getTimerColor(timer, !!win.length || draw);
+export const InfoMove = () => {
+  const move = useAppSelector((state) => state.game.move);
 
   return (
     <div className="flex w-40 flex-col items-center justify-center">
       <InfoRow>
-        <span>Move #{win.length || draw ? move - 1 : move}</span>
+        <span>Move #{move}</span>
       </InfoRow>
-      <InfoRow>{getStatus({ win, draw, currentPlayer })}</InfoRow>
       <InfoRow>
-        <span className="transition-colors" style={{ color: timerColor }}>
-          {`${minutes}:${seconds}`}
-        </span>
+        <Status />
+      </InfoRow>
+      <InfoRow>
+        <Timer />
       </InfoRow>
     </div>
   );

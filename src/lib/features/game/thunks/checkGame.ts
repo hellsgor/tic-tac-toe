@@ -9,6 +9,7 @@ export const checkGame =
     const move = getState().game.move;
     const techWin = getState().game.techWin;
     const cellsCount = getState().game.cellsCount;
+    const currentPlayer = getState().game.currentPlayer;
 
     if (techWin || move <= 4) return;
 
@@ -22,7 +23,8 @@ export const checkGame =
       }) || [];
 
     if (winCombination.length) {
-      dispatch(setWinCombination(winCombination));
+      console.log("winner:", currentPlayer);
+      dispatch(setWinCombination({ winCombination, winner: currentPlayer }));
     }
 
     if (move >= cellsCount && !winCombination.length) {

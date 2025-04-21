@@ -1,16 +1,9 @@
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { InfoProps } from "@/models";
-import { reset } from "../../game";
-import { useCallback, useEffect } from "react";
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
-import clsx from "clsx";
 import { InfoPlayer } from "./InfoPlayer";
 import { InfoActions } from "./InfoActions";
 import { InfoMove } from "./InfoMove";
 import { Panel } from "@/UI/Panel";
-import { useTimer } from "../../hooks";
-import { useTechWin } from "../../hooks/useTechWin";
 
 const players = [
   {
@@ -27,37 +20,15 @@ const players = [
   },
 ];
 
-export default function Info({ className, win, draw }: InfoProps) {
-  const classes = clsx("flex flex-col justify-between gap-y-5", className);
-
-  const move = useAppSelector((state) => state.game.move);
-  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
-
-  const timer = useTimer(10, [currentPlayer, win, draw]);
-  const { setTechnicalWin } = useTechWin();
-  useEffect(() => {
-    if (timer.left <= 0) setTechnicalWin();
-  }, [timer.left, setTechnicalWin]);
-
-  const dispatch = useAppDispatch();
-  const handleResetBtnClick = useCallback(() => {
-    dispatch(reset());
-  }, [dispatch]);
-
+export default function Info() {
   return (
-    <div className={classes}>
+    <div className="flex flex-col justify-between gap-y-5">
       <Panel justify={"center"}>
         <InfoPlayer {...players[0]} />
-        <InfoMove
-          win={win}
-          draw={draw}
-          currentPlayer={currentPlayer}
-          move={move}
-          timer={timer}
-        />
+        <InfoMove />
         <InfoPlayer {...players[1]} />
       </Panel>
-      <InfoActions handleReset={handleResetBtnClick} />
+      <InfoActions />
     </div>
   );
 }
