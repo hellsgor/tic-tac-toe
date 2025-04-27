@@ -15,7 +15,7 @@ export const InfoMove = () => {
         <Status />
       </InfoRow>
       <InfoRow>
-        <Timer />
+        <Timer duration={10} />
       </InfoRow>
     </div>
   );
