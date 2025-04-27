@@ -1,2 +1,2 @@
 export { useDoMove } from "./useDoMove";
-export { useTimer } from "./useTimer";
+export { useMoveTimer as useTimer } from "./useMoveTimer";
