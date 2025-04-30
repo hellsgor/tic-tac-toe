@@ -7,6 +7,7 @@ import { reset } from "../../game";
 import clsx from "clsx";
 import { useTimer } from "@/hooks/useTimer";
 import { useRouter } from "next/navigation";
+import { DURATIONS } from "@/constants";
 
 export const InfoActions = memo(function InfoActions() {
   const router = useRouter();
@@ -15,7 +16,7 @@ export const InfoActions = memo(function InfoActions() {
   const draw = useAppSelector((state) => state.game.draw);
 
   const [timer, resetTimer] = useTimer({
-    initialTime: 10,
+    initialTime: DURATIONS.newGameAfterEnd,
     deps: [winner, draw],
     shouldRun: () => !winner && !draw,
   });
