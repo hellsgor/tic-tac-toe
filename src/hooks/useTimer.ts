@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface useTimerProps {
   initialTime: number;
@@ -12,7 +12,7 @@ export function useTimer({
   deps,
   shouldRun,
   intervalMs = 1000,
-}: useTimerProps): number {
+}: useTimerProps): [number, () => void] {
   const [timer, setTimer] = useState(initialTime);
 
   useEffect(() => {
@@ -27,5 +27,9 @@ export function useTimer({
     return () => clearInterval(interval);
   }, deps);
 
-  return timer;
+  const resetTimer = useCallback(() => {
+    setTimer(initialTime);
+  }, [initialTime]);
+
+  return [timer, resetTimer];
 }

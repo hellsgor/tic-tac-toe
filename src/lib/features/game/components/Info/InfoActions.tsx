@@ -14,7 +14,7 @@ export const InfoActions = memo(function InfoActions() {
   const winner = useAppSelector((state) => state.game.winner);
   const draw = useAppSelector((state) => state.game.draw);
 
-  const timer = useTimer({
+  const [timer, resetTimer] = useTimer({
     initialTime: 10,
     deps: [winner, draw],
     shouldRun: () => !winner && !draw,
@@ -24,6 +24,11 @@ export const InfoActions = memo(function InfoActions() {
     dispatch(reset());
     router.push(`/`);
   }, [dispatch, router]);
+
+  const handlePlayAgainClick = useCallback(() => {
+    dispatch(reset());
+    resetTimer();
+  }, [dispatch, resetTimer]);
 
   useEffect(() => {
     if ((winner || draw) && timer === 0) {
@@ -39,7 +44,7 @@ export const InfoActions = memo(function InfoActions() {
         `pointer-events-${winner || draw ? "auto" : "none"}`,
       )}
     >
-      <MemoizedButton onClick={() => dispatch(reset())} className="w-full">
+      <MemoizedButton onClick={handlePlayAgainClick} className="w-full">
         Play again
       </MemoizedButton>
       <MemoizedButton className="w-full" onClick={handleNewGameClick}>
