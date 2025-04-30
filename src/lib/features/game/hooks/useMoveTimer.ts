@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { setTechWin } from "../game";
 import { getTimerColor } from "../components/Info/Timer/getTimerColor";
 
-export const useTimer = (initialTime: number) => {
+export const useMoveTimer = (initialTime: number) => {
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
   const win = useAppSelector((state) => state.game.win);
   const techWin = useAppSelector((state) => state.game.techWin);
