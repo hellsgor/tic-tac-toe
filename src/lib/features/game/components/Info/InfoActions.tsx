@@ -21,21 +21,20 @@ export const InfoActions = memo(function InfoActions() {
     shouldRun: () => !winner && !draw,
   });
 
-  const handleNewGameClick = useCallback(() => {
-    dispatch(reset());
-    router.push(`/`);
-  }, [dispatch, router]);
-
-  const handlePlayAgainClick = useCallback(() => {
-    dispatch(reset());
-    resetTimer();
-  }, [dispatch, resetTimer]);
+  const handleActionButtonClick = useCallback(
+    (isNewGame = false) => {
+      dispatch(reset());
+      resetTimer();
+      if (isNewGame) router.push(`/`);
+    },
+    [dispatch, resetTimer, router],
+  );
 
   useEffect(() => {
     if ((winner || draw) && timer === 0) {
-      handleNewGameClick();
+      handleActionButtonClick(true);
     }
-  }, [timer, winner, draw, handleNewGameClick]);
+  }, [timer, winner, draw, handleActionButtonClick]);
 
   return (
     <div
@@ -45,10 +44,18 @@ export const InfoActions = memo(function InfoActions() {
         `pointer-events-${winner || draw ? "auto" : "none"}`,
       )}
     >
-      <MemoizedButton onClick={handlePlayAgainClick} className="w-full">
+      <MemoizedButton
+        onClick={() => {
+          handleActionButtonClick();
+        }}
+        className="w-full"
+      >
         Play again
       </MemoizedButton>
-      <MemoizedButton className="w-full" onClick={handleNewGameClick}>
+      <MemoizedButton
+        className="w-full"
+        onClick={() => handleActionButtonClick(true)}
+      >
         New game ({timer})
       </MemoizedButton>
     </div>
