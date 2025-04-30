@@ -1,39 +1,50 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { MemoizedButton } from "@/UI/Button/Button";
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { reset } from "../../game";
 import clsx from "clsx";
+import { useTimer } from "@/hooks/useTimer";
+import { useRouter } from "next/navigation";
 
 export const InfoActions = memo(function InfoActions() {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const winner = useAppSelector((state) => state.game.winner);
   const draw = useAppSelector((state) => state.game.draw);
 
-  const [timer, setTimer] = useState(10);
+  const timer = useTimer({
+    initialTime: 10,
+    deps: [winner, draw],
+    shouldRun: () => !winner && !draw,
+  });
+
+  const handleNewGameClick = useCallback(() => {
+    dispatch(reset());
+    router.push(`/`);
+  }, [dispatch, router]);
 
   useEffect(() => {
-    if (!winner && !draw) {
-      return;
+    if ((winner || draw) && timer === 0) {
+      handleNewGameClick();
     }
-
-    const interval = setInterval(() => {
-      setTimer((prev) => Math.max(0, prev - 1));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [winner, draw]);
+  }, [timer, winner, draw, handleNewGameClick]);
 
   return (
     <div
       className={clsx(
         "flex items-center gap-x-5 transition-opacity",
         `opacity-${winner || draw ? 1 : 0}`,
+        `pointer-events-${winner || draw ? "auto" : "none"}`,
       )}
     >
       <MemoizedButton onClick={() => dispatch(reset())} className="w-full">
         Play again
       </MemoizedButton>
-      <MemoizedButton className="w-full">New game ({timer})</MemoizedButton>
+      <MemoizedButton className="w-full" onClick={handleNewGameClick}>
+        New game ({timer})
+      </MemoizedButton>
     </div>
   );
 });
