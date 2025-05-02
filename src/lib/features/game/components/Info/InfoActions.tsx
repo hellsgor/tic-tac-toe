@@ -30,11 +30,11 @@ export const InfoActions = memo(function InfoActions() {
     [dispatch, resetTimer, router],
   );
 
-  useEffect(() => {
-    if ((winner || draw) && timer === 0) {
-      handleActionButtonClick(true);
-    }
-  }, [timer, winner, draw, handleActionButtonClick]);
+  // useEffect(() => {
+  //   if ((winner || draw) && timer === 0) {
+  //     handleActionButtonClick(true);
+  //   }
+  // }, [timer, winner, draw, handleActionButtonClick]);
 
   return (
     <div
