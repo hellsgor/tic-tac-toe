@@ -62,7 +62,7 @@ export const InfoActions = memo(function InfoActions() {
         className="w-full"
         onClick={() => handleActionButtonClick(true)}
       >
-        New game ({timer})
+        New game ({String(countDown).padStart(2, "0")})
       </MemoizedButton>
     </div>
   );
