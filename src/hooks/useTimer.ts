@@ -1,35 +1,57 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import { useNow } from "./useNow";
 
-interface useTimerProps {
+interface UseTimerParams {
+  updateInterval?: number;
   initialTime: number;
-  deps: unknown[];
-  shouldRun: () => boolean;
-  intervalMs?: number;
+  isResetAfterEnd?: boolean;
+  resetDelay?: number;
+}
+
+interface UseTimerResult {
+  toggleTimer: () => void;
+  enabled: boolean;
+  timer: number;
+  countDown: number;
 }
 
 export function useTimer({
+  updateInterval = 1000,
   initialTime,
-  deps,
-  shouldRun,
-  intervalMs = 1000,
-}: useTimerProps): [number, () => void] {
-  const [timer, setTimer] = useState(initialTime);
+  isResetAfterEnd = false,
+  resetDelay = 0,
+}: UseTimerParams): UseTimerResult {
+  const [startAt, setStartAt] = useState<number | undefined>();
 
-  useEffect(() => {
-    if (shouldRun()) {
-      return;
+  const toggleTimer = () => {
+    if (startAt) {
+      if (resetDelay) {
+        setTimeout(() => {
+          setStartAt(undefined);
+        }, resetDelay);
+      } else {
+        setStartAt(undefined);
+      }
+    } else {
+      setStartAt(Date.now());
     }
+  };
 
-    const interval = setInterval(() => {
-      setTimer((prev) => Math.max(0, prev - 1));
-    }, intervalMs);
+  const now = useNow(updateInterval, !!startAt, (now) => {
+    if (startAt && isResetAfterEnd && initialTime - (now - startAt) < 0) {
+      setStartAt(undefined);
+    }
+  });
 
-    return () => clearInterval(interval);
-  }, deps);
+  const fromStart = now - (startAt ?? now);
 
-  const resetTimer = useCallback(() => {
-    setTimer(initialTime);
-  }, [initialTime]);
+  const timer = Math.min(fromStart, initialTime);
+  const countDown = Math.max(initialTime - fromStart, 0);
 
-  return [timer, resetTimer];
+  return {
+    toggleTimer: toggleTimer,
+    enabled: !!startAt,
+    timer: Math.round(timer / updateInterval),
+    countDown: Math.round(countDown / updateInterval),
+  };
 }
