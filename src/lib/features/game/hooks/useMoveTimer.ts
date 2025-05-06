@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useEffect } from "react";
 import { setTechWin } from "../game";

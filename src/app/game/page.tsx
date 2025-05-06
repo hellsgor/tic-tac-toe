@@ -1,5 +1,3 @@
-"use client";
-
 import { Field, Info } from "@/lib/features/game";
 import { Container } from "@/UI/Container";
 

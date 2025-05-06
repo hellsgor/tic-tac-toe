@@ -1,3 +1,5 @@
+"use client";
+
 import Cell from "../Cell";
 import { useAppSelector } from "@/lib/hooks";
 import clsx from "clsx";
