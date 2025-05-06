@@ -1,4 +1,4 @@
 export const DURATIONS = {
-  move: 10,
-  newGameAfterEnd: 10,
+  move: 10000,
+  newGameAfterEnd: 10000,
 };

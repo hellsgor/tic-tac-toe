@@ -15,26 +15,32 @@ export const InfoActions = memo(function InfoActions() {
   const winner = useAppSelector((state) => state.game.winner);
   const draw = useAppSelector((state) => state.game.draw);
 
-  const [timer, resetTimer] = useTimer({
+  const { toggleTimer, enabled, countDown } = useTimer({
     initialTime: DURATIONS.newGameAfterEnd,
-    deps: [winner, draw],
-    shouldRun: () => !winner && !draw,
+    updateInterval: 1000,
+    resetDelay: 200,
   });
 
   const handleActionButtonClick = useCallback(
     (isNewGame = false) => {
       dispatch(reset());
-      resetTimer();
+      if (enabled) toggleTimer();
       if (isNewGame) router.push(`/`);
     },
-    [dispatch, resetTimer, router],
+    [dispatch, router, enabled],
   );
 
-  // useEffect(() => {
-  //   if ((winner || draw) && timer === 0) {
-  //     handleActionButtonClick(true);
-  //   }
-  // }, [timer, winner, draw, handleActionButtonClick]);
+  useEffect(() => {
+    if ((winner || draw) && !enabled) {
+      toggleTimer();
+    }
+  }, [winner, draw]);
+
+  useEffect(() => {
+    if ((winner || draw) && countDown <= 0) {
+      handleActionButtonClick(true);
+    }
+  }, [winner, draw, countDown, handleActionButtonClick]);
 
   return (
     <div
@@ -56,7 +62,7 @@ export const InfoActions = memo(function InfoActions() {
         className="w-full"
         onClick={() => handleActionButtonClick(true)}
       >
-        New game ({timer})
+        New game ({String(countDown).padStart(2, "0")})
       </MemoizedButton>
     </div>
   );

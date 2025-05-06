@@ -1,7 +1,10 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { setTechWin } from "../game";
 import { getTimerColor } from "../components/Info/Timer/getTimerColor";
+import { ToggleTimerActions, useTimer } from "@/hooks/useTimer";
 
 export const useMoveTimer = (initialTime: number) => {
   const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
@@ -11,33 +14,30 @@ export const useMoveTimer = (initialTime: number) => {
 
   const dispatch = useAppDispatch();
 
-  const [timer, setTimer] = useState(initialTime);
+  const { toggleTimer, countDown, enabled } = useTimer({ initialTime });
 
   useEffect(() => {
-    if (win || draw || techWin) {
-      setTimer(0);
-      return;
+    if (!win && !draw && !techWin) {
+      toggleTimer(ToggleTimerActions.START);
     }
-    const interval = setInterval(() => {
-      setTimer((prev) => Math.max(prev - 1, 0));
-    }, 1000);
 
-    return () => clearInterval(interval);
-  }, [win, draw, techWin]);
-
-  useEffect(() => {
-    setTimer(win || draw || techWin ? 0 : initialTime);
+    if ((win || draw || techWin) && enabled) {
+      toggleTimer(ToggleTimerActions.END);
+    }
   }, [currentPlayer, win, draw, techWin]);
 
   useEffect(() => {
-    if (timer === 0 && !win && !draw && !techWin) {
-      dispatch(setTechWin());
+    if (countDown <= 0) {
+      toggleTimer(ToggleTimerActions.END);
+      if (!win && !draw && !techWin) {
+        dispatch(setTechWin());
+      }
     }
-  }, [timer, dispatch]);
+  }, [dispatch, countDown]);
 
   return {
-    color: getTimerColor(timer, initialTime, win || draw),
-    minutes: `${Math.floor(timer / 60)}`.padStart(2, "0"),
-    seconds: `${timer % 60}`.padStart(2, "0"),
+    color: getTimerColor(countDown * 1000, initialTime, win || draw),
+    minutes: `${Math.floor(countDown / 60)}`.padStart(2, "0"),
+    seconds: `${countDown % 60}`.padStart(2, "0"),
   };
 };

@@ -1,35 +1,77 @@
-import { useCallback, useEffect, useState } from "react";
+"use client";
 
-interface useTimerProps {
+import { useState } from "react";
+import { useNow } from "./useNow";
+
+interface UseTimerParams {
+  updateInterval?: number;
   initialTime: number;
-  deps: unknown[];
-  shouldRun: () => boolean;
-  intervalMs?: number;
+  isResetAfterEnd?: boolean;
+  resetDelay?: number;
 }
 
-export function useTimer({
-  initialTime,
-  deps,
-  shouldRun,
-  intervalMs = 1000,
-}: useTimerProps): [number, () => void] {
-  const [timer, setTimer] = useState(initialTime);
+interface UseTimerResult {
+  toggleTimer: (action?: ToggleTimerActionsType) => void;
+  enabled: boolean;
+  timer: number;
+  countDown: number;
+}
 
-  useEffect(() => {
-    if (shouldRun()) {
+export enum ToggleTimerActions {
+  START = "start",
+  END = "end",
+}
+
+type ToggleTimerActionsType = ToggleTimerActions | undefined;
+
+export function useTimer({
+  updateInterval = 1000,
+  initialTime,
+  isResetAfterEnd = false,
+  resetDelay = 0,
+}: UseTimerParams): UseTimerResult {
+  const [startAt, setStartAt] = useState<number | undefined>();
+  const [isFinished, setIsFinished] = useState(false);
+
+  const toggleTimer = (action?: ToggleTimerActionsType) => {
+    if (action === ToggleTimerActions.END) {
+      setStartAt(undefined);
+      setIsFinished(true);
       return;
     }
 
-    const interval = setInterval(() => {
-      setTimer((prev) => Math.max(0, prev - 1));
-    }, intervalMs);
+    if (action === ToggleTimerActions.START) {
+      setStartAt(Date.now());
+      setIsFinished(false);
+      return;
+    }
 
-    return () => clearInterval(interval);
-  }, deps);
+    if (startAt) {
+      if (resetDelay) {
+        setTimeout(() => {
+          setStartAt(undefined);
+        }, resetDelay);
+      } else {
+        setStartAt(undefined);
+      }
+    } else {
+      setStartAt(Date.now());
+    }
+  };
 
-  const resetTimer = useCallback(() => {
-    setTimer(initialTime);
-  }, [initialTime]);
+  const now = useNow(updateInterval, !!startAt && !isFinished, (now) => {
+    if (startAt && isResetAfterEnd && initialTime - (now - startAt) < 0) {
+      setStartAt(undefined);
+    }
+  });
 
-  return [timer, resetTimer];
+  const fromStart = startAt ? now - startAt : 0;
+  const countDown = isFinished ? 0 : Math.max(initialTime - fromStart, 0);
+
+  return {
+    toggleTimer: toggleTimer,
+    enabled: !!startAt && !isFinished,
+    timer: Math.round(fromStart / updateInterval),
+    countDown: Math.round(countDown / updateInterval),
+  };
 }

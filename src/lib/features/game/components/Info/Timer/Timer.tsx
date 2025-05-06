@@ -1,7 +1,7 @@
-import { useTimer } from "../../../hooks";
+import { useMoveTimer } from "../../../hooks/useMoveTimer";
 
 export function Timer({ duration }: { duration: number }) {
-  const timer = useTimer(duration);
+  const timer = useMoveTimer(duration);
 
   return (
     <span className="transition-colors" style={{ color: timer.color }}>

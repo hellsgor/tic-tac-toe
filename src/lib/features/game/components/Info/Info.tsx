@@ -1,3 +1,5 @@
+"use client";
+
 import XIcon from "@/UI/icons/XIcon";
 import OIcon from "@/UI/icons/OIcon";
 import { InfoPlayer } from "./InfoPlayer";
