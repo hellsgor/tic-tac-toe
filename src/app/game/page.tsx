@@ -5,7 +5,7 @@ import { Container } from "@/UI/Container";
 
 export default function Game() {
   return (
-    <Container centered={true} gap={10}>
+    <Container className="items-center justify-center gap-10">
       <Info />
       <Field />
     </Container>
