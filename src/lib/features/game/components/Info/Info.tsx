@@ -6,18 +6,19 @@ import { InfoPlayer } from "./InfoPlayer";
 import { InfoActions } from "./InfoActions";
 import { InfoMove } from "./InfoMove";
 import { Panel } from "@/UI/Panel";
+import { basePath } from "@/constants/basePath";
 
 const players = [
   {
     userName: "Henry",
     rate: 1234,
-    imgSrc: "/images/userExample1.webp",
+    imgSrc: `${basePath}/images/userExample1.webp`,
     icon: <XIcon />,
   },
   {
     userName: "Sophie",
     rate: 1234,
-    imgSrc: "/images/userExample2.webp",
+    imgSrc: `${basePath}/images/userExample2.webp`,
     icon: <OIcon />,
   },
 ];
